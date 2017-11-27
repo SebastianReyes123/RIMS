@@ -18,7 +18,8 @@ namespace RIMS
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
-            //HEj
+            //Hej
+            //Mattias was here
             Console.WriteLine();
         }
     }
