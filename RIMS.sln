@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RIMS", "RIMS\RIMS.csproj", "{D6AF4E47-448D-400A-8C12-4C0042E8F925}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "RIMS\Server.csproj", "{D6AF4E47-448D-400A-8C12-4C0042E8F925}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{30AAC306-B33A-4599-B911-8B806F166F1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D6AF4E47-448D-400A-8C12-4C0042E8F925}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6AF4E47-448D-400A-8C12-4C0042E8F925}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6AF4E47-448D-400A-8C12-4C0042E8F925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30AAC306-B33A-4599-B911-8B806F166F1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30AAC306-B33A-4599-B911-8B806F166F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30AAC306-B33A-4599-B911-8B806F166F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30AAC306-B33A-4599-B911-8B806F166F1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
