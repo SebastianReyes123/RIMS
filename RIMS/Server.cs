@@ -12,6 +12,7 @@ namespace RIMS
 {
     class Server
     {
+        public TcpClient client;
         public bool connected = false;
         public Server(Form1 form)
         {
@@ -23,7 +24,7 @@ namespace RIMS
         public void Run()
         {
             TcpListener listener = new TcpListener(IPAddress.Any, 5000);
-            
+
             try
             {
                 listener.Start();
@@ -73,7 +74,46 @@ namespace RIMS
             clients.Remove(client);
             form.Info("Client X has left the building...");
             Broadcast(client, "Client X has left the building...");
+
         }
+
+        //public void SendQuestion(string message)
+        //{
+
+        //    TcpClient c = new TcpClient();
+        //    Server server = new Server(form);
+        //    ClientHandler client = new ClientHandler(c, server, form);
+        //    BroadcastQuestion(message);
+        //    //Broadcast(client, message);
+
+        //    //form.Invoke(Broadcast);
+
+
+
+        //}
+
+        public void BroadcastQuestion( string message)
+        {
+
+            connected = true;
+            TcpClient tcpClient = new TcpClient();
+
+            NetworkStream n = tcpClient.GetStream();
+            BinaryWriter w = new BinaryWriter(n);
+            w.Write(message);
+            w.Flush();
+        }
+
+        public void Write(string message)
+        {
+           
+                NetworkStream n = client.GetStream();
+                
+                BinaryWriter w = new BinaryWriter(n);
+                w.Write(message);
+                w.Flush();
+            }
     }
 }
+
 

@@ -110,6 +110,7 @@
             this.labelQuestion.Size = new System.Drawing.Size(158, 46);
             this.labelQuestion.TabIndex = 13;
             this.labelQuestion.Text = "FRÅGA";
+            this.labelQuestion.Click += new System.EventHandler(this.labelQuestion_Click);
             // 
             // textBox3
             // 
@@ -164,7 +165,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        internal System.Windows.Forms.Label labelQuestion;
+       public System.Windows.Forms.Label labelQuestion;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         internal System.Windows.Forms.TextBox textBoxStatus;

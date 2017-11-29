@@ -35,6 +35,9 @@
             this.connectedInfoBox = new System.Windows.Forms.TextBox();
             this.connectionLight = new System.Windows.Forms.Button();
             this.connectedLabel = new System.Windows.Forms.Label();
+            this.textBoxAskQuestion = new System.Windows.Forms.TextBox();
+            this.buttonSendQuestion = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // serverStartButton
@@ -64,6 +67,7 @@
             this.connectedBox.Name = "connectedBox";
             this.connectedBox.Size = new System.Drawing.Size(211, 468);
             this.connectedBox.TabIndex = 3;
+            this.connectedBox.SelectedIndexChanged += new System.EventHandler(this.connectedBox_SelectedIndexChanged);
             // 
             // infoLabel
             // 
@@ -101,11 +105,41 @@
             this.connectedLabel.TabIndex = 7;
             this.connectedLabel.Text = "Anslutna klienter";
             // 
+            // textBoxAskQuestion
+            // 
+            this.textBoxAskQuestion.Location = new System.Drawing.Point(12, 154);
+            this.textBoxAskQuestion.Name = "textBoxAskQuestion";
+            this.textBoxAskQuestion.Size = new System.Drawing.Size(432, 22);
+            this.textBoxAskQuestion.TabIndex = 8;
+            this.textBoxAskQuestion.TextChanged += new System.EventHandler(this.textBoxAskQuestion_TextChanged);
+            // 
+            // buttonSendQuestion
+            // 
+            this.buttonSendQuestion.Location = new System.Drawing.Point(465, 154);
+            this.buttonSendQuestion.Name = "buttonSendQuestion";
+            this.buttonSendQuestion.Size = new System.Drawing.Size(120, 23);
+            this.buttonSendQuestion.TabIndex = 9;
+            this.buttonSendQuestion.Text = "Skicka fråga";
+            this.buttonSendQuestion.UseVisualStyleBackColor = true;
+            this.buttonSendQuestion.Click += new System.EventHandler(this.buttonSendQuestion_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 134);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 17);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Ställ fråga";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 639);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonSendQuestion);
+            this.Controls.Add(this.textBoxAskQuestion);
             this.Controls.Add(this.connectedLabel);
             this.Controls.Add(this.connectionLight);
             this.Controls.Add(this.connectedInfoBox);
@@ -130,6 +164,9 @@
         public System.Windows.Forms.Button connectionLight;
         public System.Windows.Forms.Button serverStartButton;
         private System.Windows.Forms.Label connectedLabel;
+        private System.Windows.Forms.TextBox textBoxAskQuestion;
+        private System.Windows.Forms.Button buttonSendQuestion;
+        private System.Windows.Forms.Label label1;
     }
 }
 

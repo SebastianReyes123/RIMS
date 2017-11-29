@@ -39,8 +39,14 @@ namespace Client
 
         private void btnNO_Click(object sender, EventArgs e)
         {
-            myClient.connected = false;
-            myClient.client.Close();
+          
         }
+
+       public void labelQuestion_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        
     }
 }

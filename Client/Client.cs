@@ -23,7 +23,7 @@ namespace Client
 
         public void StartListen()
         {
-            client = new TcpClient("192.168.25.164", 5000);
+            client = new TcpClient("192.168.25.118", 5000);
 
             senderThread = new Thread(Listen);
             senderThread.Start();
@@ -31,7 +31,7 @@ namespace Client
             //Thread listenerThread = new Thread(Send);
             //listenerThread.Start();
         }
-            
+
         public void Listen()
         {
             string message = "";
@@ -74,6 +74,21 @@ namespace Client
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public void WriteQuestion()
+        {
+            string message = "";
+            
+                NetworkStream n = client.GetStream();
+                message = "yes";
+                BinaryWriter w = new BinaryWriter(n);
+                w.Write(message);
+                w.Flush();
+            message = new BinaryReader(n).ReadString();
+            form.labelQuestion.Text = message;
+
+
         }
     }
 }
