@@ -22,7 +22,7 @@ namespace Client
 
         public void StartListen()
         {
-            client = new TcpClient("192.168.25.89", 5000);
+            client = new TcpClient("192.168.25.164", 5000);
             Thread senderThread = new Thread(Listen);
             senderThread.Start();
         }
