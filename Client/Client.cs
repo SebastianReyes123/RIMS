@@ -2,34 +2,46 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Drawing;
 
 namespace Client
 {
     class Client
     {
         public TcpClient client;
-        private Form1 form;
         public bool connected;
-        Thread senderThread;
+        private Form1 form;
+        private Message message;
 
         public Client(Form1 form)
         {
+            message = new Message();
             this.form = form;
         }
 
         public void StartListen()
         {
-            client = new TcpClient("192.168.25.118", 5000);
+            try
+            {
+                //IP nr hårdkodat - ÄNDRA!
+                client = new TcpClient("192.168.25.164", 5000);
 
-            senderThread = new Thread(Listen);
-            senderThread.Start();
-
-            //Thread listenerThread = new Thread(Send);
-            //listenerThread.Start();
+                message.Alias = form.textBoxAlias.Text;
+                message.IP = GetLocalIP();
+                Send(null, true);
+                Thread senderThread = new Thread(Listen);
+                senderThread.Start();
+            }
+            catch (Exception e)
+            {
+                form.Invoke(new Action(() => form.labelStatus.Text = "Något gick fel. " + e.Message));
+            }
         }
 
         public void Listen()
@@ -38,7 +50,10 @@ namespace Client
 
             try
             {
-                form.textBoxStatus.Text = "Uppkopplad mot servern";
+                form.labelStatus.Text = "Connected";
+                form.labelStatus.BackColor = Color.FromArgb(0, 128, 0);
+                form.Invoke(new Action(() => form.groupBoxConnect.Hide()));
+                form.Invoke(new Action(() => form.groupBoxAnswer.Show()));
                 connected = true;
                 while (connected)
                 {
@@ -49,25 +64,20 @@ namespace Client
             }
             catch (Exception ex)
             {
-                form.textBoxStatus.Text = "Något gick fel: " + ex.Message;
-            }
-            finally
-            {
-                if (senderThread != null)
-                    senderThread.Abort();
+                form.labelStatus.Text = "Något gick fel: " + ex.Message;
             }
         }
 
-        public void Send()
+        public void Send(string answer, bool stayConnect)
         {
-            string message = "";
-
+            message.Answer = answer;
+            message.StayConnected = stayConnect;
             try
             {
                 NetworkStream n = client.GetStream();
-                message = "yes";
                 BinaryWriter w = new BinaryWriter(n);
-                w.Write(message);
+                string jsonMessage = JsonConvert.SerializeObject(message);
+                w.Write(jsonMessage);
                 w.Flush();
             }
             catch (Exception ex)
@@ -76,19 +86,19 @@ namespace Client
             }
         }
 
-        public void WriteQuestion()
+        private string GetLocalIP()
         {
-            string message = "";
-            
-                NetworkStream n = client.GetStream();
-                message = "yes";
-                BinaryWriter w = new BinaryWriter(n);
-                w.Write(message);
-                w.Flush();
-            message = new BinaryReader(n).ReadString();
-            form.labelQuestion.Text = message;
-
-
+            IPHostEntry host;
+            string localIP = "?";
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    localIP = ip.ToString();
+                }
+            }
+            return localIP;
         }
     }
 }
