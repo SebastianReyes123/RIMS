@@ -23,56 +23,28 @@ namespace RIMS
         public void Run()
         {
             TcpListener listener = new TcpListener(IPAddress.Any, 5000);
-
+            
             try
             {
                 listener.Start();
                 connected = true;
                 form.Info("Server up and running, waiting for messages...");
-                form.connectionLight.BackColor = System.Drawing.Color.DarkGreen;
-                form.serverStartButton.Enabled = false;
-
                 while (connected)
                 {
                     TcpClient c = listener.AcceptTcpClient();
-                    ClientHandler newClient = new ClientHandler(c, this);
+                    ClientHandler newClient = new ClientHandler(c, this, form);
                     clients.Add(newClient);
-
-                    Connected();
-                    //form.connectedBox.Items.Add(((IPEndPoint)c.Client.RemoteEndPoint).Address.ToString());                    
-
+                    form.connectedBox.Items.Add(newClient);
                     Thread clientThread = new Thread(newClient.Run);
                     clientThread.Start();
-
                 }
 
             }
             catch (Exception ex)
             {
-
                 form.Info(ex.Message);
-                form.serverStartButton.Enabled = true;
-
-            }
-            finally
-            {
-                if (listener != null)
-                {
-                    listener.Stop();
-                    form.serverStartButton.Enabled = true;
-                }
             }
 
-        }
-
-        private void Connected()
-        {
-            form.connectedBox.Items.Clear();
-            foreach (var client in clients)
-            {
-                form.connectedBox.Items.Add(((IPEndPoint)client.tcpclient.Client.RemoteEndPoint).Address.ToString());
-            }
-            form.connectedInfoBox.Text = clients.Count.ToString();
         }
 
         public void Broadcast(ClientHandler client, string message)
@@ -101,9 +73,7 @@ namespace RIMS
             clients.Remove(client);
             form.Info("Client X has left the building...");
             Broadcast(client, "Client X has left the building...");
-            Connected();
         }
-
     }
 }
 

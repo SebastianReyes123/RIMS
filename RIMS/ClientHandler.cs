@@ -12,10 +12,12 @@ namespace RIMS
     {
         public TcpClient tcpclient;
         private Server myServer;
-        public ClientHandler(TcpClient c, Server server)
+        Form1 form;
+        public ClientHandler(TcpClient c, Server server, Form1 form)
         {
             tcpclient = c;
             this.myServer = server;
+            this.form = form;
         }
 
         public void Run()
@@ -28,7 +30,7 @@ namespace RIMS
                     NetworkStream n = tcpclient.GetStream();
                     message = new BinaryReader(n).ReadString();
                     myServer.Broadcast(this, message);
-                    Console.WriteLine(message);
+                    form.Info(message);
                 }
 
                 myServer.DisconnectClient(this);
