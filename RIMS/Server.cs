@@ -32,7 +32,7 @@ namespace RIMS
                 while (connected)
                 {
                     TcpClient c = listener.AcceptTcpClient();
-                    ClientHandler newClient = new ClientHandler(c, this);
+                    ClientHandler newClient = new ClientHandler(c, this, form);
                     clients.Add(newClient);
                     form.connectedBox.Items.Add(newClient);
                     Thread clientThread = new Thread(newClient.Run);
@@ -42,13 +42,7 @@ namespace RIMS
             }
             catch (Exception ex)
             {
-
                 form.Info(ex.Message);
-            }
-            finally
-            {
-                if (listener != null)
-                    listener.Stop();
             }
 
         }

@@ -11,9 +11,10 @@ namespace Client
 {
     class Client
     {
-        private TcpClient client;
+        public TcpClient client;
         private Form1 form;
-        private bool userReady;
+        public bool connected;
+        Thread senderThread;
 
         public Client(Form1 form)
         {
@@ -22,11 +23,15 @@ namespace Client
 
         public void StartListen()
         {
-            client = new TcpClient("192.168.25.89", 5000);
-            Thread senderThread = new Thread(Listen);
-            senderThread.Start();
-        }
+            client = new TcpClient("192.168.25.164", 5000);
 
+            senderThread = new Thread(Listen);
+            senderThread.Start();
+
+            //Thread listenerThread = new Thread(Send);
+            //listenerThread.Start();
+        }
+            
         public void Listen()
         {
             string message = "";
@@ -34,7 +39,8 @@ namespace Client
             try
             {
                 form.textBoxStatus.Text = "Uppkopplad mot servern";
-                while (true)
+                connected = true;
+                while (connected)
                 {
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
@@ -45,7 +51,29 @@ namespace Client
             {
                 form.textBoxStatus.Text = "Något gick fel: " + ex.Message;
             }
+            finally
+            {
+                if (senderThread != null)
+                    senderThread.Abort();
+            }
         }
 
+        public void Send()
+        {
+            string message = "";
+
+            try
+            {
+                NetworkStream n = client.GetStream();
+                message = "yes";
+                BinaryWriter w = new BinaryWriter(n);
+                w.Write(message);
+                w.Flush();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }

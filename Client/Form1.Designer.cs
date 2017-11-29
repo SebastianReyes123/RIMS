@@ -50,6 +50,7 @@
             this.btnNO.TabIndex = 19;
             this.btnNO.Text = "NO";
             this.btnNO.UseVisualStyleBackColor = false;
+            this.btnNO.Click += new System.EventHandler(this.btnNO_Click);
             // 
             // btnYES
             // 
@@ -61,6 +62,7 @@
             this.btnYES.TabIndex = 18;
             this.btnYES.Text = "YES";
             this.btnYES.UseVisualStyleBackColor = false;
+            this.btnYES.Click += new System.EventHandler(this.btnYES_Click);
             // 
             // btnConnectToServer
             // 
@@ -103,7 +105,7 @@
             // 
             this.labelQuestion.AutoSize = true;
             this.labelQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelQuestion.Location = new System.Drawing.Point(176, 315);
+            this.labelQuestion.Location = new System.Drawing.Point(74, 315);
             this.labelQuestion.Name = "labelQuestion";
             this.labelQuestion.Size = new System.Drawing.Size(158, 46);
             this.labelQuestion.TabIndex = 13;
@@ -148,6 +150,7 @@
             this.Controls.Add(this.textBoxStatus);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

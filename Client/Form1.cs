@@ -25,5 +25,22 @@ namespace Client
         {
             myClient.StartListen();
         }
+
+        private void btnYES_Click(object sender, EventArgs e)
+        {
+            myClient.Send();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            myClient.connected = false;
+            myClient.client.Close();
+        }
+
+        private void btnNO_Click(object sender, EventArgs e)
+        {
+            myClient.connected = false;
+            myClient.client.Close();
+        }
     }
 }
