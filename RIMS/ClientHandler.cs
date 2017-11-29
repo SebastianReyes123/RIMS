@@ -8,16 +8,23 @@ using System.IO;
 
 namespace RIMS
 {
-    class ClientHandler
+    public class ClientHandler
     {
         public TcpClient tcpclient;
         private Server myServer;
         Form1 form;
-        public ClientHandler(TcpClient c, Server server, Form1 form)
+        public bool Yes = false;
+        public bool No = false;
+        public string Alias;
+        public string Ip;
+        public ClientHandler(TcpClient c, Server server, Form1 form, bool yes,bool no, string ip)
         {
             tcpclient = c;
             this.myServer = server;
             this.form = form;
+            Yes = yes;
+            No = no;
+            Ip = ip;
         }
 
         public void Run()
