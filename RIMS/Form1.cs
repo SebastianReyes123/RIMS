@@ -10,7 +10,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//presentationframework.dll
+//PresentationCore.dll
 namespace RIMS
 {
     public partial class Form1 : Form
@@ -22,6 +23,7 @@ namespace RIMS
             CheckForIllegalCrossThreadCalls = false;
 
         }
+
         public void Info(string info)
         {
             infoBox.Text = info;
