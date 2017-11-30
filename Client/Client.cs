@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using RIMS;
-
+using System.Drawing;
 
 namespace Client
 {
@@ -23,7 +23,7 @@ namespace Client
         string Ip;
 
         public Client(Form1 form)
-        {           
+        {
             message = new Message();
             this.form = form;
         }
@@ -43,8 +43,8 @@ namespace Client
             }
             catch (Exception e)
             {
-                form.Invoke(new Action(() => { form.labelStatus.Text = $"Det gick inte att ansluta till servern {e.Message}"; }));
-                form.Invoke(new Action(() => form.groupBoxConnect.Show()));
+                SetStatusLabelText("Det gick ej att ansluta", Color.Red);
+                GroupBoxEnabler(true);
             }
 
             //Thread listenerThread = new Thread(Send);
@@ -57,21 +57,32 @@ namespace Client
 
             try
             {
-                form.Invoke(new Action(() => { form.labelStatus.Text = "Uppkopplad mot servern"; }));
-                form.Invoke(new Action(() => { form.groupBoxConnect.Enabled = false; }));
+                SetStatusLabelText("Uppkopplad mot servern", Color.Green);
+                GroupBoxEnabler(false);
+
 
                 connected = true;
                 while (connected)
                 {
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
-                    form.Invoke(new Action(() => { form.labelQuestion.Text = message; }));
+                    var msg = JsonConvert.DeserializeObject<HostMessage>(message);
+
+                    if (!msg.IsConnected)
+                    {
+                        GroupBoxEnabler(true);
+                        SetStatusLabelText("Ej ansluten till server", Color.Red);
+                    }
+                    else
+                    {
+                        form.Invoke(new Action(() => { form.labelQuestion.Text = msg.Message; }));
+                    }
                 }
             }
             catch (Exception ex)
             {
-                form?.Invoke(new Action(() => { form.labelStatus.Text = "Något gick fel: " + ex.Message; }));
-                form?.Invoke(new Action(() => { form.groupBoxConnect.Enabled = false; }));
+                SetStatusLabelText("Något gick fel", Color.Red);
+                GroupBoxEnabler(true);
 
             }
             finally
@@ -81,6 +92,7 @@ namespace Client
             }
         }
 
+        
 
         public void Send(string answer, bool stayConnected)
         {
@@ -97,7 +109,7 @@ namespace Client
             }
             catch (Exception ex)
             {
-                form?.Invoke(new Action(() => { form.labelStatus.Text = "Något gick fel: " + ex.Message; }));
+                SetStatusLabelText("Något gick fel", Color.Red);
             }
         }
         public string GetLocalIP()
@@ -117,7 +129,19 @@ namespace Client
             return localIP;
         }
 
+        public void GroupBoxEnabler(bool b)
+        {
+            
+            form?.Invoke(new Action(() => { form.groupBoxConnect.Enabled = b; }));
+        }
 
+        public void SetStatusLabelText(string status, Color color)
+        {
+            form.labelStatus.BackColor = color;
+            form?.Invoke(new Action(() => { form.labelStatus.Text = status; }));
+        }
+
+      
     }
 }
 

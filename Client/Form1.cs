@@ -30,11 +30,32 @@ namespace Client
         private void btnYES_Click(object sender, EventArgs e)
         {
             myClient.Send("true", true);
+            btnYES.BackColor = Color.LightGoldenrodYellow;
+            
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
 
+            DisconnectClient();
+        }
+
+        private void btnNO_Click(object sender, EventArgs e)
+        {     
+            myClient.Send("false", true);
+            btnNO.BackColor = Color.PaleVioletRed;
+
+        }
+
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            DisconnectClient();
+            groupBoxConnect.Enabled = true;
+            labelStatus.Text = "Frånkopplad";
+        }
+
+        private void DisconnectClient()
+        {
             if (myClient.client != null)
             {
                 myClient.client.Close();
@@ -43,11 +64,6 @@ namespace Client
             }
         }
 
-        private void btnNO_Click(object sender, EventArgs e)
-        {
-            myClient.Send("false", true);
-            //myClient.connected = false;
-            //myClient.client.Close();
-        }
     }
+
 }

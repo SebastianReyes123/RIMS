@@ -39,6 +39,7 @@
             this.txBxIp = new System.Windows.Forms.TextBox();
             this.groupBoxConnect = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnDisconnect = new System.Windows.Forms.Button();
             this.groupBoxConnect.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,7 +103,8 @@
             // labelStatus
             // 
             this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new System.Drawing.Point(274, 43);
+            this.labelStatus.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelStatus.Location = new System.Drawing.Point(270, 48);
             this.labelStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(37, 13);
@@ -154,18 +156,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(274, 71);
+            this.label1.Location = new System.Drawing.Point(265, 30);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 21;
             this.label1.Text = "Status";
             // 
+            // btnDisconnect
+            // 
+            this.btnDisconnect.Location = new System.Drawing.Point(30, 204);
+            this.btnDisconnect.Name = "btnDisconnect";
+            this.btnDisconnect.Size = new System.Drawing.Size(82, 33);
+            this.btnDisconnect.TabIndex = 22;
+            this.btnDisconnect.Text = "Disconnect";
+            this.btnDisconnect.UseVisualStyleBackColor = true;
+            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(397, 513);
+            this.Controls.Add(this.btnDisconnect);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnNO);
             this.Controls.Add(this.btnYES);
@@ -196,6 +209,7 @@
         public System.Windows.Forms.Label labelStatus;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txBxIp;
+        private System.Windows.Forms.Button btnDisconnect;
     }
 }
 
