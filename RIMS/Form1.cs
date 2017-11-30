@@ -37,7 +37,7 @@ namespace RIMS
             {
                 Server.connected = false;
                 TcpClient client = new TcpClient("127.0.0.1", 5000);
-                ClientHandler ch = new ClientHandler(client, myServer, this);
+                ClientHandler ch = new ClientHandler(client, myServer, this, true, false,"");
                 NetworkStream n = client.GetStream();
                 BinaryWriter w = new BinaryWriter(n);
                 w.Write("Håkan"); 

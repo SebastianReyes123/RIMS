@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client
+namespace RIMS
 {
-    class Message
-    {
-        public string Alias { get; set; }
+    public class Message
+    {        
         public string Ip { get; set; }
+        public string Alias { get; set; }
         public string Answer { get; set; }
         public bool StayConnected { get; set; }
     }
