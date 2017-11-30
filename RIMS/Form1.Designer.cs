@@ -39,9 +39,10 @@
             // 
             // serverStartButton
             // 
-            this.serverStartButton.Location = new System.Drawing.Point(465, 21);
+            this.serverStartButton.Location = new System.Drawing.Point(349, 17);
+            this.serverStartButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.serverStartButton.Name = "serverStartButton";
-            this.serverStartButton.Size = new System.Drawing.Size(84, 30);
+            this.serverStartButton.Size = new System.Drawing.Size(63, 24);
             this.serverStartButton.TabIndex = 0;
             this.serverStartButton.Text = "Host";
             this.serverStartButton.UseVisualStyleBackColor = true;
@@ -49,63 +50,68 @@
             // 
             // infoBox
             // 
-            this.infoBox.Location = new System.Drawing.Point(12, 25);
+            this.infoBox.Location = new System.Drawing.Point(9, 20);
+            this.infoBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.infoBox.Name = "infoBox";
             this.infoBox.ReadOnly = true;
-            this.infoBox.Size = new System.Drawing.Size(392, 22);
+            this.infoBox.Size = new System.Drawing.Size(295, 20);
             this.infoBox.TabIndex = 2;
             this.infoBox.TextChanged += new System.EventHandler(this.infoBox_TextChanged);
             // 
             // connectedBox
             // 
             this.connectedBox.FormattingEnabled = true;
-            this.connectedBox.ItemHeight = 16;
-            this.connectedBox.Location = new System.Drawing.Point(802, 131);
+            this.connectedBox.Location = new System.Drawing.Point(602, 106);
+            this.connectedBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.connectedBox.Name = "connectedBox";
-            this.connectedBox.Size = new System.Drawing.Size(211, 468);
+            this.connectedBox.Size = new System.Drawing.Size(159, 381);
             this.connectedBox.TabIndex = 3;
             // 
             // infoLabel
             // 
             this.infoLabel.AutoSize = true;
-            this.infoLabel.Location = new System.Drawing.Point(13, 2);
+            this.infoLabel.Location = new System.Drawing.Point(10, 2);
+            this.infoLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(73, 17);
+            this.infoLabel.Size = new System.Drawing.Size(58, 13);
             this.infoLabel.TabIndex = 4;
             this.infoLabel.Text = "Info/status";
             // 
             // connectedInfoBox
             // 
             this.connectedInfoBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.connectedInfoBox.Location = new System.Drawing.Point(921, 108);
+            this.connectedInfoBox.Location = new System.Drawing.Point(691, 88);
+            this.connectedInfoBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.connectedInfoBox.Name = "connectedInfoBox";
             this.connectedInfoBox.ReadOnly = true;
-            this.connectedInfoBox.Size = new System.Drawing.Size(43, 15);
+            this.connectedInfoBox.Size = new System.Drawing.Size(32, 13);
             this.connectedInfoBox.TabIndex = 5;
             // 
             // connectionLight
             // 
             this.connectionLight.BackColor = System.Drawing.Color.Red;
-            this.connectionLight.Location = new System.Drawing.Point(410, 25);
+            this.connectionLight.Location = new System.Drawing.Point(308, 20);
+            this.connectionLight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.connectionLight.Name = "connectionLight";
-            this.connectionLight.Size = new System.Drawing.Size(34, 22);
+            this.connectionLight.Size = new System.Drawing.Size(26, 18);
             this.connectionLight.TabIndex = 6;
             this.connectionLight.UseVisualStyleBackColor = false;
             // 
             // connectedLabel
             // 
             this.connectedLabel.AutoSize = true;
-            this.connectedLabel.Location = new System.Drawing.Point(802, 108);
+            this.connectedLabel.Location = new System.Drawing.Point(602, 88);
+            this.connectedLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.connectedLabel.Name = "connectedLabel";
-            this.connectedLabel.Size = new System.Drawing.Size(113, 17);
+            this.connectedLabel.Size = new System.Drawing.Size(85, 13);
             this.connectedLabel.TabIndex = 7;
             this.connectedLabel.Text = "Anslutna klienter";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1042, 639);
+            this.ClientSize = new System.Drawing.Size(782, 519);
             this.Controls.Add(this.connectedLabel);
             this.Controls.Add(this.connectionLight);
             this.Controls.Add(this.connectedInfoBox);
@@ -113,10 +119,12 @@
             this.Controls.Add(this.connectedBox);
             this.Controls.Add(this.infoBox);
             this.Controls.Add(this.serverStartButton);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.ShowIcon = false;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            
             this.ResumeLayout(false);
             this.PerformLayout();
 

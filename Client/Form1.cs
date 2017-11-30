@@ -17,8 +17,9 @@ namespace Client
         public Form1()
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false;
+            //CheckForIllegalCrossThreadCalls = false;
             myClient = new Client(this);
+            groupBoxConnect.Enabled = true;
         }
 
         private void btnConnectToServer_Click(object sender, EventArgs e)
@@ -28,19 +29,25 @@ namespace Client
 
         private void btnYES_Click(object sender, EventArgs e)
         {
-            myClient.Send();
+            myClient.Send("true", true);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            myClient.connected = false;
-            myClient.client.Close();
+
+            if (myClient.client != null)
+            {
+                myClient.client.Close();
+                myClient.Send(null, false);
+                myClient.connected = false;
+            }
         }
 
         private void btnNO_Click(object sender, EventArgs e)
         {
-            myClient.connected = false;
-            myClient.client.Close();
+            myClient.Send("false", true);
+            //myClient.connected = false;
+            //myClient.client.Close();
         }
     }
 }

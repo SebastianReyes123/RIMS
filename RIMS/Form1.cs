@@ -47,11 +47,14 @@ namespace RIMS
             {
                 myServer.connected = false;
                 TcpClient client = new TcpClient("127.0.0.1", 5000);
+                ClientHandler ch = new ClientHandler(client, myServer, this);
                 NetworkStream n = client.GetStream();
                 BinaryWriter w = new BinaryWriter(n);
                 w.Write("quit");
                 w.Flush();
+                myServer.Broadcast(ch, "servern har avslutats");
             }
         }
+
     }
 }

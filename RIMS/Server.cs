@@ -18,7 +18,7 @@ namespace RIMS
             this.form = form;
         }
         private Form1 form;
-        List<ClientHandler> clients = new List<ClientHandler>();
+        public List<ClientHandler> clients = new List<ClientHandler>();
 
         public void Run()
         {
