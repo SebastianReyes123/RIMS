@@ -5,6 +5,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace RIMS
 {
@@ -17,7 +19,7 @@ namespace RIMS
         public bool No = false;
         public string Alias;
         public string Ip;
-        public ClientHandler(TcpClient c, Server server, Form1 form, bool yes,bool no, string ip)
+        public ClientHandler(TcpClient c, Server server, Form1 form, bool yes, bool no, string ip)
         {
             tcpclient = c;
             this.myServer = server;
@@ -31,21 +33,35 @@ namespace RIMS
         {
             try
             {
-                string message = "";
-                while (!message.Equals("quit"))
+
+                while (Server.connected)
                 {
+
                     NetworkStream n = tcpclient.GetStream();
-                    message = new BinaryReader(n).ReadString();
-                    myServer.Broadcast(this, message);
-                    form.Info(message);
+                    string message = new BinaryReader(n).ReadString();
+
+
+                    Message myMessage = JsonConvert.DeserializeObject<Message>(message);
+                    if (!myMessage.StayConnected)
+                        break;
+                    foreach (var c in myServer.clients)
+                    {
+                        c.Ip = myMessage.Ip;
+                        c.Alias = myMessage.Alias;
+
+                        if (myMessage.Answer == "true")
+                            c.Yes = true;
+                        if (myMessage.Answer == "false")
+                            c.No = true;
+                    }
+                    myServer.Connected();
                 }
 
-                myServer.DisconnectClient(this);
-                tcpclient.Close();
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                form.infoBox.Text = ex.Message;
             }
             finally
             {

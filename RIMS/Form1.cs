@@ -12,8 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//presentationframework.dll
-//PresentationCore.dll
+
 namespace RIMS
 {
     public partial class Form1 : Form
@@ -23,19 +22,8 @@ namespace RIMS
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-
-        }
-
-        public void Info(string info)
-        {
-            infoBox.Text = info;
-        }
-
-        private void infoBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        }        
+        
         private void serverStartButton_Click(object sender, EventArgs e)
         {
             myServer = new Server(this);
@@ -47,35 +35,13 @@ namespace RIMS
         {
             if (myServer != null)
             {
-                myServer.connected = false;
+                Server.connected = false;
                 TcpClient client = new TcpClient("127.0.0.1", 5000);
                 NetworkStream n = client.GetStream();
                 BinaryWriter w = new BinaryWriter(n);
-                w.Write("quit");
+                w.Write("Håkan"); //Ändra till connected bool variablen?
                 w.Flush();
             }
-        }
-
-        public void Feedback()
-        {
-            TcpListener listener = new TcpListener(IPAddress.Any, 5000);
-            listener.Start();
-            TcpClient tcpclient = listener.AcceptTcpClient();
-            NetworkStream n = tcpclient.GetStream();
-            
-            
-            string message = new BinaryReader(n).ReadString();
-            Message myMessage = JsonConvert.DeserializeObject<Message>(message);
-            foreach (var c in myServer.clients)
-            {
-                c.Ip = myMessage.Ip;
-                c.Alias = myMessage.Alias;
-                if (myMessage.Alias == "true")
-                    c.Yes = true;
-                if (myMessage.Alias == "false")
-                    c.No = true;
-            }
-            myServer.Connected();
         }
     }
 }

@@ -58,8 +58,7 @@
             this.infoBox.Name = "infoBox";
             this.infoBox.ReadOnly = true;
             this.infoBox.Size = new System.Drawing.Size(392, 22);
-            this.infoBox.TabIndex = 2;
-            this.infoBox.TextChanged += new System.EventHandler(this.infoBox_TextChanged);
+            this.infoBox.TabIndex = 2;           
             // 
             // infoLabel
             // 
@@ -145,13 +144,13 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox infoBox;        
         private System.Windows.Forms.Label infoLabel;
         public System.Windows.Forms.TextBox connectedInfoBox;        
         public System.Windows.Forms.Button connectionLight;
         public System.Windows.Forms.Button serverStartButton;
         private System.Windows.Forms.Label connectedLabel;
         public System.Windows.Forms.ListView connectedBox;
+        public System.Windows.Forms.TextBox infoBox;
     }
 }
 

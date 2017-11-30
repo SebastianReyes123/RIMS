@@ -12,7 +12,7 @@ namespace RIMS
 {
     public class Server
     {
-        public bool connected = false;
+        public static bool connected = false;
         public Server(Form1 form)
         {
             this.form = form;
@@ -28,7 +28,7 @@ namespace RIMS
             {
                 listener.Start();
                 connected = true;
-                form.Info("Server up and running, waiting for messages...");
+                form.infoBox.Text="Server up and running...";
                 form.connectionLight.BackColor = System.Drawing.Color.DarkGreen;
                 form.serverStartButton.Enabled = false;
 
@@ -39,18 +39,16 @@ namespace RIMS
                     clients.Add(newClient);
 
                     Connected();
-                    //form.connectedBox.Items.Add(((IPEndPoint)c.Client.RemoteEndPoint).Address.ToString());                    
-
+                   
                     Thread clientThread = new Thread(newClient.Run);
                     clientThread.Start();
-
                 }
 
             }
             catch (Exception ex)
             {
 
-                form.Info(ex.Message);
+                form.infoBox.Text = ex.Message;
                 form.serverStartButton.Enabled = true;
 
             }
@@ -109,8 +107,7 @@ namespace RIMS
         public void DisconnectClient(ClientHandler client)
         {
             clients.Remove(client);
-            form.Info("Client X has left the building...");
-            Broadcast(client, "Client X has left the building...");
+            form.infoBox.Text = $"Client {client.Alias} has left the building...";            
             Connected();
         }
 
