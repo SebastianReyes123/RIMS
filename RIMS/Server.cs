@@ -7,6 +7,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace RIMS
 {
@@ -44,14 +46,12 @@ namespace RIMS
                     Thread clientThread = new Thread(newClient.Run);
                     clientThread.Start();
                 }
-
             }
             catch (Exception ex)
             {
 
                 form.infoBox.Text = ex.Message;
                 form.serverStartButton.Enabled = true;
-
             }
             finally
             {
@@ -61,7 +61,6 @@ namespace RIMS
                     form.serverStartButton.Enabled = true;
                 }
             }
-
         }
 
         public void Connected()
@@ -70,16 +69,22 @@ namespace RIMS
             foreach (var client in clients)
             {
                 string ip = ((IPEndPoint)client.tcpclient.Client.RemoteEndPoint).Address.ToString();
-                if (client.Alias == null)
+                if (client.Alias == null|| client.Alias == string.Empty)
                 {
                     client.Alias = "Håkan";
                 }
-                var temp = form.connectedBox.Items.Add(ip);
+                var temp = form.connectedBox.Items.Add(ip);                
                 temp.Text = client.Alias;
                 if (client.Yes)
-                    temp.BackColor = System.Drawing.Color.Green;
+                {
+                    temp.BackColor = Color.Green;
+                    client.Yes = false;
+                }
                 if (client.No)
-                    temp.BackColor = System.Drawing.Color.Red;
+                {
+                    temp.BackColor = Color.Red;
+                    client.No = false;
+                }               
             }
             form.connectedInfoBox.Text = clients.Count.ToString();
         }
@@ -102,7 +107,7 @@ namespace RIMS
             form.infoBox.Text = $"Client {client.Alias} has left the building...";
             Connected();
 
-        }              
+        }
     }
 }
 

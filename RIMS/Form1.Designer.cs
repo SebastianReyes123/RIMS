@@ -70,10 +70,10 @@
             // connectedInfoBox
             // 
             this.connectedInfoBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.connectedInfoBox.Location = new System.Drawing.Point(921, 108);
+            this.connectedInfoBox.Location = new System.Drawing.Point(950, 108);
             this.connectedInfoBox.Name = "connectedInfoBox";
             this.connectedInfoBox.ReadOnly = true;
-            this.connectedInfoBox.Size = new System.Drawing.Size(43, 15);
+            this.connectedInfoBox.Size = new System.Drawing.Size(33, 15);
             this.connectedInfoBox.TabIndex = 5;
             // 
             // connectionLight
@@ -88,7 +88,7 @@
             // connectedLabel
             // 
             this.connectedLabel.AutoSize = true;
-            this.connectedLabel.Location = new System.Drawing.Point(802, 108);
+            this.connectedLabel.Location = new System.Drawing.Point(831, 109);
             this.connectedLabel.Name = "connectedLabel";
             this.connectedLabel.Size = new System.Drawing.Size(113, 17);
             this.connectedLabel.TabIndex = 7;
@@ -101,22 +101,22 @@
             this.connectedBox.FullRowSelect = true;
             this.connectedBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.connectedBox.LabelWrap = false;
-            this.connectedBox.Location = new System.Drawing.Point(867, 129);
+            this.connectedBox.Location = new System.Drawing.Point(834, 129);
             this.connectedBox.Name = "connectedBox";
-            this.connectedBox.Size = new System.Drawing.Size(116, 473);
+            this.connectedBox.Size = new System.Drawing.Size(149, 473);
             this.connectedBox.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.connectedBox.TabIndex = 8;
             this.connectedBox.Tag = "";
             this.connectedBox.TileSize = new System.Drawing.Size(100, 100);
             this.connectedBox.UseCompatibleStateImageBehavior = false;
-            this.connectedBox.View = System.Windows.Forms.View.List;            
+            this.connectedBox.View = System.Windows.Forms.View.List;
             // 
             // textBoxAskQuestion
             // 
             this.textBoxAskQuestion.Location = new System.Drawing.Point(12, 154);
             this.textBoxAskQuestion.Name = "textBoxAskQuestion";
             this.textBoxAskQuestion.Size = new System.Drawing.Size(432, 22);
-            this.textBoxAskQuestion.TabIndex = 8;            
+            this.textBoxAskQuestion.TabIndex = 8;
             // 
             // buttonSendQuestion
             // 
