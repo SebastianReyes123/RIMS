@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 
+
 namespace RIMS
 {
     public class Server
@@ -91,10 +92,10 @@ namespace RIMS
                 {
                     temp.BackColor = Color.Red;
                     client.No = false;
-
-                    clientsReplied++;
                 }
             }
+
+            clientsReplied++;
             form.labelClientReplyStatus.Text = $"Svarat: {clientsReplied} / {clientsConnected}";
             form.connectedInfoBox.Text = clients.Count.ToString();
         }
@@ -127,6 +128,8 @@ namespace RIMS
 
         }
     }
+
+
 }
 
 

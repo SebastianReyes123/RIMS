@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RIMS
+namespace Client
 {
-    public class HostMessage
+    class HostMessage
     {
         public string Message { get; set; }
         public bool IsConnected { get; set; }
