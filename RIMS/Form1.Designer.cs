@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("192.168.0.1");
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "192.168.0.2"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Green, null);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("", System.Windows.Forms.HorizontalAlignment.Left);
             this.serverStartButton = new System.Windows.Forms.Button();
             this.infoBox = new System.Windows.Forms.TextBox();
             this.infoLabel = new System.Windows.Forms.Label();
@@ -62,18 +57,6 @@
             this.infoBox.ReadOnly = true;
             this.infoBox.Size = new System.Drawing.Size(392, 22);
             this.infoBox.TabIndex = 2;
-            this.infoBox.TextChanged += new System.EventHandler(this.infoBox_TextChanged);
-            // 
-            // connectedBox
-            // 
-            this.connectedBox.FormattingEnabled = true;
-            this.connectedBox.ItemHeight = 16;
-            this.connectedBox.Location = new System.Drawing.Point(802, 131);
-            this.connectedBox.Name = "connectedBox";
-            this.connectedBox.Size = new System.Drawing.Size(211, 468);
-            this.connectedBox.TabIndex = 3;
-            this.connectedBox.SelectedIndexChanged += new System.EventHandler(this.connectedBox_SelectedIndexChanged);
-            this.infoBox.TabIndex = 2;           
             // 
             // infoLabel
             // 
@@ -117,15 +100,6 @@
             this.connectedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.connectedBox.FullRowSelect = true;
             this.connectedBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            listViewGroup1.Header = "";
-            listViewGroup1.Name = "listViewGroup1";
-            listViewItem1.Group = listViewGroup1;
-            listViewGroup2.Header = "";
-            listViewGroup2.Name = "listViewGroup2";
-            listViewItem2.Group = listViewGroup2;
-            this.connectedBox.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
             this.connectedBox.LabelWrap = false;
             this.connectedBox.Location = new System.Drawing.Point(867, 129);
             this.connectedBox.Name = "connectedBox";
@@ -136,6 +110,7 @@
             this.connectedBox.TileSize = new System.Drawing.Size(100, 100);
             this.connectedBox.UseCompatibleStateImageBehavior = false;
             this.connectedBox.View = System.Windows.Forms.View.List;
+            this.connectedBox.SelectedIndexChanged += new System.EventHandler(this.connectedBox_SelectedIndexChanged);
             // 
             // textBoxAskQuestion
             // 

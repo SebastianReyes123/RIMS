@@ -39,7 +39,7 @@ namespace RIMS
                 TcpClient client = new TcpClient("127.0.0.1", 5000);
                 NetworkStream n = client.GetStream();
                 BinaryWriter w = new BinaryWriter(n);
-                w.Write("Håkan"); //Ändra till connected bool variablen?
+                w.Write("Håkan"); 
                 w.Flush();
             }
         }

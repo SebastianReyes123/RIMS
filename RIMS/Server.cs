@@ -13,8 +13,7 @@ namespace RIMS
     public class Server
     {
         public static bool connected = false;
-        public TcpClient client;
-        public bool connected = false;
+        public TcpClient client;        
         public Server(Form1 form)
         {
             this.form = form;
@@ -30,7 +29,7 @@ namespace RIMS
             {
                 listener.Start();
                 connected = true;
-                form.infoBox.Text="Server up and running...";
+                form.infoBox.Text = "Server up and running...";
                 form.connectionLight.BackColor = System.Drawing.Color.DarkGreen;
                 form.serverStartButton.Enabled = false;
 
@@ -41,7 +40,7 @@ namespace RIMS
                     clients.Add(newClient);
 
                     Connected();
-                   
+
                     Thread clientThread = new Thread(newClient.Run);
                     clientThread.Start();
                 }
@@ -109,8 +108,8 @@ namespace RIMS
         public void DisconnectClient(ClientHandler client)
         {
             clients.Remove(client);
-            form.Info("Client X has left the building...");
-            Broadcast(client, "Client X has left the building...");
+            form.infoBox.Text = $"Client {client.Alias} has left the building...";
+            Connected();
 
         }
 
@@ -129,7 +128,7 @@ namespace RIMS
 
         //}
 
-        public void BroadcastQuestion( string message)
+        public void BroadcastQuestion(string message)
         {
 
             connected = true;
@@ -143,15 +142,12 @@ namespace RIMS
 
         public void Write(string message)
         {
-           
-                NetworkStream n = client.GetStream();
-                
-                BinaryWriter w = new BinaryWriter(n);
-                w.Write(message);
-                w.Flush();
-            }
-            form.infoBox.Text = $"Client {client.Alias} has left the building...";            
-            Connected();
+
+            NetworkStream n = client.GetStream();
+
+            BinaryWriter w = new BinaryWriter(n);
+            w.Write(message);
+            w.Flush();     
         }
 
     }
