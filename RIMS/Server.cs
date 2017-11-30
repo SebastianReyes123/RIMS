@@ -33,16 +33,21 @@ namespace RIMS
             {
                 listener.Start();
                 connected = true;
-                form.infoBox.Text = "Server up and running...";
-                form.connectionLight.BackColor = Color.DarkGreen;
-                form.serverStartButton.Enabled = false;
+                SetInfoBoxText("Server up and running...");
+                form.Invoke(new Action(() => { form.connectionLight.BackColor = Color.DarkGreen; }));
+
+                ServerButtonIsEnabled(false);
 
                 while (connected)
                 {
                     TcpClient c = listener.AcceptTcpClient();
                     ClientHandler newClient = new ClientHandler(c, this, form, false, false, ((IPEndPoint)c.Client.RemoteEndPoint).Address.ToString());
                     clients.Add(newClient);
-                    Broadcast(form.labelQuestion.Text, true);
+
+                    string questionText = "";
+                    form.Invoke(new Action(() => { questionText = form.labelQuestion.Text; }));
+
+                    Broadcast(questionText, true);
                     Connected();
 
                     Thread clientThread = new Thread(newClient.Run);
@@ -52,22 +57,22 @@ namespace RIMS
             catch (Exception ex)
             {
 
-                form.infoBox.Text = ex.Message;
-                form.serverStartButton.Enabled = true;
+                SetInfoBoxText("Något gick galet");
+                ServerButtonIsEnabled(true);
             }
             finally
             {
                 if (listener != null)
                 {
                     listener.Stop();
-                    form.serverStartButton.Enabled = true;
+                    ServerButtonIsEnabled(true);
                 }
             }
         }
 
         public void Connected()
         {
-            form.connectedBox.Items.Clear();
+            form.Invoke(new Action(() => { form.connectedBox.Items.Clear(); }));
             int clientsConnected = 0;
             int clientsReplied = 0;
 
@@ -79,7 +84,8 @@ namespace RIMS
                 {
                     client.Alias = "Håkan";
                 }
-                var temp = form.connectedBox.Items.Add(ip);
+
+                ListViewItem temp = (ListViewItem)form.Invoke(new Action(() => { form.connectedBox.Items.Add(ip); }));
                 temp.Text = client.Alias;
                 if (client.Yes)
                 {
@@ -94,11 +100,13 @@ namespace RIMS
                 }
             }
 
-            form.labelClientReplyStatus.Text = $"Svarat: {clientsReplied} / {clientsConnected}";
-            form.connectedInfoBox.Text = clients.Count.ToString();
+            
+           
            
             form.Progress();
             
+            form.Invoke(new Action(() => { form.labelClientReplyStatus.Text = $"Svarat: {clientsReplied} / {clientsConnected}"; }));
+            form.Invoke(new Action(() => { form.connectedInfoBox.Text = clients.Count.ToString(); }));
         }
 
 
@@ -113,7 +121,7 @@ namespace RIMS
                 w.Write(hostMessage);
                 w.Flush();
 
-                
+
                 Connected();
             }
         }
@@ -121,9 +129,18 @@ namespace RIMS
         public void DisconnectClient(ClientHandler client)
         {
             clients.Remove(client);
-            form.infoBox.Text = $"Client {client.Alias} has left the building...";
+            SetInfoBoxText($"Client {client.Alias} has left the building...");
             Connected();
+        }
 
+        public void SetInfoBoxText(string infoText)
+        {
+            form.Invoke(new Action(() => { form.infoBox.Text = infoText; }));
+        }
+
+        public void ServerButtonIsEnabled(bool isEnabled)
+        {
+            form.Invoke(new Action(() => { form.serverStartButton.Enabled = isEnabled; }));
         }
     }
 
