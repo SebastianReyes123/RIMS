@@ -43,25 +43,11 @@ namespace RIMS
                 w.Flush();
             }
         }
-
-        private void textBoxAskQuestion_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void buttonSendQuestion_Click(object sender, EventArgs e)
         {
-            string message = textBoxAskQuestion.Text;
-     
-            //myServer.connected = true;
-
-            myServer.Write(message);
-
-        }
-
-        private void connectedBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+            string message = textBoxAskQuestion.Text;     
+            myServer.Broadcast(message);
+        }        
     }
 }
