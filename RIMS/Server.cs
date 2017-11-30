@@ -96,7 +96,8 @@ namespace RIMS
 
             form.labelClientReplyStatus.Text = $"Svarat: {clientsReplied} / {clientsConnected}";
             form.connectedInfoBox.Text = clients.Count.ToString();
-            form.progressBar1.PerformStep();
+           
+            form.Progress();
             
         }
 
