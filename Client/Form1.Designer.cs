@@ -36,7 +36,7 @@
             this.labelStatus = new System.Windows.Forms.Label();
             this.labelQuestion = new System.Windows.Forms.Label();
             this.txBxAlias = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txBxIp = new System.Windows.Forms.TextBox();
             this.groupBoxConnect = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxConnect.SuspendLayout();
@@ -108,7 +108,6 @@
             this.labelStatus.Size = new System.Drawing.Size(37, 13);
             this.labelStatus.TabIndex = 14;
             this.labelStatus.Text = "Status";
-            
             // 
             // labelQuestion
             // 
@@ -129,18 +128,19 @@
             this.txBxAlias.Size = new System.Drawing.Size(113, 20);
             this.txBxAlias.TabIndex = 12;
             // 
-            // textBox2
+            // txBxIp
             // 
-            this.textBox2.Location = new System.Drawing.Point(7, 43);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(113, 20);
-            this.textBox2.TabIndex = 11;
+            this.txBxIp.Location = new System.Drawing.Point(7, 43);
+            this.txBxIp.Margin = new System.Windows.Forms.Padding(2);
+            this.txBxIp.Name = "txBxIp";
+            this.txBxIp.Size = new System.Drawing.Size(113, 20);
+            this.txBxIp.TabIndex = 11;
+            this.txBxIp.Text = "192.168.25.80";
             // 
             // groupBoxConnect
             // 
             this.groupBoxConnect.Controls.Add(this.label2);
-            this.groupBoxConnect.Controls.Add(this.textBox2);
+            this.groupBoxConnect.Controls.Add(this.txBxIp);
             this.groupBoxConnect.Controls.Add(this.btnConnectToServer);
             this.groupBoxConnect.Controls.Add(this.txBxAlias);
             this.groupBoxConnect.Controls.Add(this.label3);
@@ -191,11 +191,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         internal System.Windows.Forms.Label labelQuestion;
-        private System.Windows.Forms.TextBox textBox2;
         public System.Windows.Forms.TextBox txBxAlias;
         public System.Windows.Forms.GroupBox groupBoxConnect;
         public System.Windows.Forms.Label labelStatus;
         public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox txBxIp;
     }
 }
 

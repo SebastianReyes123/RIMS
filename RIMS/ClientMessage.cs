@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RIMS
 {
-    public class Message
+    public class ClientMessage
     {        
         public string Ip { get; set; }
         public string Alias { get; set; }

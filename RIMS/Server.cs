@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -66,8 +67,12 @@ namespace RIMS
         public void Connected()
         {
             form.connectedBox.Items.Clear();
+            int clientsConnected = 0;
+            int clientsReplied = 0;
+
             foreach (var client in clients)
             {
+                clientsConnected++;
                 string ip = ((IPEndPoint)client.tcpclient.Client.RemoteEndPoint).Address.ToString();
                 if (client.Alias == null|| client.Alias == string.Empty)
                 {
@@ -80,24 +85,36 @@ namespace RIMS
                     temp.BackColor = Color.Green;
                     client.Yes = false;
                 }
+                    clientsReplied++;
+                }
                 if (client.No)
                 {
                     temp.BackColor = Color.Red;
                     client.No = false;
                 }               
+                    clientsReplied++;
+                }
             }
+            form.labelClientReplyStatus.Text = $"Svarat: {clientsReplied} / {clientsConnected}";
             form.connectedInfoBox.Text = clients.Count.ToString();
         }
 
-        public void Broadcast(string message)
+        public void Broadcast(string message, bool isConnected)
         {
             foreach (ClientHandler tmpClient in clients)
             {
                 NetworkStream n = tmpClient.tcpclient.GetStream();
                 BinaryWriter w = new BinaryWriter(n);
-                w.Write(message);
+                string hostMessage = JsonConvert.SerializeObject(new HostMessage { Message = message, IsConnected = isConnected });
+                w.Write(hostMessage);
                 w.Flush();
 
+                foreach (var client in clients)
+                {
+                    client.No = false;
+                    client.Yes = false;
+                }
+                Connected();
             }
         }
 

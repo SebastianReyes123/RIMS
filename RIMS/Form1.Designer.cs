@@ -38,6 +38,8 @@
             this.textBoxAskQuestion = new System.Windows.Forms.TextBox();
             this.buttonSendQuestion = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelClientReplyStatus = new System.Windows.Forms.Label();
+            this.labelQuestion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // serverStartButton
@@ -137,11 +139,33 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Ställ fråga";
             // 
+            // labelClientReplyStatus
+            // 
+            this.labelClientReplyStatus.AutoSize = true;
+            this.labelClientReplyStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelClientReplyStatus.Location = new System.Drawing.Point(12, 487);
+            this.labelClientReplyStatus.Name = "labelClientReplyStatus";
+            this.labelClientReplyStatus.Size = new System.Drawing.Size(217, 69);
+            this.labelClientReplyStatus.TabIndex = 11;
+            this.labelClientReplyStatus.Text = "Status:";
+            // 
+            // labelQuestion
+            // 
+            this.labelQuestion.AutoSize = true;
+            this.labelQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelQuestion.Location = new System.Drawing.Point(12, 303);
+            this.labelQuestion.Name = "labelQuestion";
+            this.labelQuestion.Size = new System.Drawing.Size(219, 69);
+            this.labelQuestion.TabIndex = 12;
+            this.labelQuestion.Text = "Fråga: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 639);
+            this.Controls.Add(this.labelQuestion);
+            this.Controls.Add(this.labelClientReplyStatus);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonSendQuestion);
             this.Controls.Add(this.textBoxAskQuestion);
@@ -156,6 +180,7 @@
             this.ShowIcon = false;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,6 +197,8 @@
         private System.Windows.Forms.TextBox textBoxAskQuestion;
         private System.Windows.Forms.Button buttonSendQuestion;
         private System.Windows.Forms.Label label1;
+        internal System.Windows.Forms.Label labelClientReplyStatus;
+        internal System.Windows.Forms.Label labelQuestion;
     }
 }
 

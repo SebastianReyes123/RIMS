@@ -8,6 +8,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using RIMS;
+
 
 namespace Client
 {
@@ -18,6 +20,7 @@ namespace Client
         public bool connected;
         Thread senderThread;
         Message message;
+        string Ip;
 
         public Client(Form1 form)
         {           
@@ -29,8 +32,8 @@ namespace Client
         {
             try
             {
-                
-                client = new TcpClient("192.168.25.80", 5000);
+                form.Invoke(new Action(() => { Ip = form.txBxIp.Text; }));
+                client = new TcpClient(Ip, 5000);
                 senderThread = new Thread(Listen);
                 senderThread.Start();
                 message.Alias = form.txBxAlias.Text;
@@ -41,6 +44,7 @@ namespace Client
             catch (Exception e)
             {
                 form.Invoke(new Action(() => { form.labelStatus.Text = $"Det gick inte att ansluta till servern {e.Message}"; }));
+                form.Invoke(new Action(() => form.groupBoxConnect.Show()));
             }
 
             //Thread listenerThread = new Thread(Send);
@@ -66,8 +70,9 @@ namespace Client
             }
             catch (Exception ex)
             {
-                form.Invoke(new Action(() => { form.labelStatus.Text = "Något gick fel: " + ex.Message; }));
-   
+                form?.Invoke(new Action(() => { form.labelStatus.Text = "Något gick fel: " + ex.Message; }));
+                form?.Invoke(new Action(() => { form.groupBoxConnect.Enabled = false; }));
+
             }
             finally
             {
@@ -92,7 +97,7 @@ namespace Client
             }
             catch (Exception ex)
             {
-                form.Invoke(new Action(() => { form.labelStatus.Text = "Något gick fel: " + ex.Message; }));
+                form?.Invoke(new Action(() => { form.labelStatus.Text = "Något gick fel: " + ex.Message; }));
             }
         }
         public string GetLocalIP()
