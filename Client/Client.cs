@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,20 +8,19 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Drawing;
 
 namespace Client
 {
     class Client
     {
         public TcpClient client;
-        public bool connected;
         private Form1 form;
-        private Message message;
+        public bool connected;
+        Thread senderThread;
+        Message message;
 
         public Client(Form1 form)
-        {
+        {           
             message = new Message();
             this.form = form;
         }
@@ -29,19 +29,22 @@ namespace Client
         {
             try
             {
-                //IP nr hårdkodat - ÄNDRA!
-                client = new TcpClient("192.168.25.164", 5000);
-
-                message.Alias = form.textBoxAlias.Text;
-                message.IP = GetLocalIP();
-                Send(null, true);
-                Thread senderThread = new Thread(Listen);
+                
+                client = new TcpClient("192.168.25.80", 5000);
+                senderThread = new Thread(Listen);
                 senderThread.Start();
+                message.Alias = form.txBxAlias.Text;
+                message.Ip = GetLocalIP();
+
+                Send(null, true);
             }
             catch (Exception e)
             {
-                form.Invoke(new Action(() => form.labelStatus.Text = "Något gick fel. " + e.Message));
+                form.Invoke(new Action(() => { form.labelStatus.Text = $"Det gick inte att ansluta till servern {e.Message}"; }));
             }
+
+            //Thread listenerThread = new Thread(Send);
+            //listenerThread.Start();
         }
 
         public void Listen()
@@ -50,44 +53,52 @@ namespace Client
 
             try
             {
-                form.labelStatus.Text = "Connected";
-                form.labelStatus.BackColor = Color.FromArgb(0, 128, 0);
-                form.Invoke(new Action(() => form.groupBoxConnect.Hide()));
-                form.Invoke(new Action(() => form.groupBoxAnswer.Show()));
+                form.Invoke(new Action(() => { form.labelStatus.Text = "Uppkopplad mot servern"; }));
+                form.Invoke(new Action(() => { form.groupBoxConnect.Enabled = false; }));
+
                 connected = true;
                 while (connected)
                 {
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
-                    form.labelQuestion.Text = message;
+                    form.Invoke(new Action(() => { form.labelQuestion.Text = message; }));
                 }
             }
             catch (Exception ex)
             {
-                form.labelStatus.Text = "Något gick fel: " + ex.Message;
+                form.Invoke(new Action(() => { form.labelStatus.Text = "Något gick fel: " + ex.Message; }));
+   
+            }
+            finally
+            {
+                if (senderThread != null)
+                    senderThread.Abort();
             }
         }
 
-        public void Send(string answer, bool stayConnect)
+
+        public void Send(string answer, bool stayConnected)
         {
+            message.StayConnected = stayConnected;
             message.Answer = answer;
-            message.StayConnected = stayConnect;
+
             try
             {
                 NetworkStream n = client.GetStream();
                 BinaryWriter w = new BinaryWriter(n);
-                string jsonMessage = JsonConvert.SerializeObject(message);
-                w.Write(jsonMessage);
+                var msg = JsonConvert.SerializeObject(message);
+                w.Write(msg);
                 w.Flush();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                form.Invoke(new Action(() => { form.labelStatus.Text = "Något gick fel: " + ex.Message; }));
             }
         }
-
-        private string GetLocalIP()
+        public string GetLocalIP()
         {
+
+
             IPHostEntry host;
             string localIP = "?";
             host = Dns.GetHostEntry(Dns.GetHostName());
@@ -100,5 +111,8 @@ namespace Client
             }
             return localIP;
         }
+
+
     }
 }
+

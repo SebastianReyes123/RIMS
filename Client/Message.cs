@@ -9,7 +9,7 @@ namespace Client
     class Message
     {
         public string Alias { get; set; }
-        public string IP { get; set; }
+        public string Ip { get; set; }
         public string Answer { get; set; }
         public bool StayConnected { get; set; }
     }
