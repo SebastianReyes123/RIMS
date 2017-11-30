@@ -13,6 +13,8 @@ namespace RIMS
     public class Server
     {
         public static bool connected = false;
+        public TcpClient client;
+        public bool connected = false;
         public Server(Form1 form)
         {
             this.form = form;
@@ -107,10 +109,52 @@ namespace RIMS
         public void DisconnectClient(ClientHandler client)
         {
             clients.Remove(client);
+            form.Info("Client X has left the building...");
+            Broadcast(client, "Client X has left the building...");
+
+        }
+
+        //public void SendQuestion(string message)
+        //{
+
+        //    TcpClient c = new TcpClient();
+        //    Server server = new Server(form);
+        //    ClientHandler client = new ClientHandler(c, server, form);
+        //    BroadcastQuestion(message);
+        //    //Broadcast(client, message);
+
+        //    //form.Invoke(Broadcast);
+
+
+
+        //}
+
+        public void BroadcastQuestion( string message)
+        {
+
+            connected = true;
+            TcpClient tcpClient = new TcpClient();
+
+            NetworkStream n = tcpClient.GetStream();
+            BinaryWriter w = new BinaryWriter(n);
+            w.Write(message);
+            w.Flush();
+        }
+
+        public void Write(string message)
+        {
+           
+                NetworkStream n = client.GetStream();
+                
+                BinaryWriter w = new BinaryWriter(n);
+                w.Write(message);
+                w.Flush();
+            }
             form.infoBox.Text = $"Client {client.Alias} has left the building...";            
             Connected();
         }
 
     }
 }
+
 
