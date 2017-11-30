@@ -48,13 +48,25 @@ namespace RIMS
         
         private void buttonSendQuestion_Click(object sender, EventArgs e)
         {
-            labelQuestion.Text = textBoxAskQuestion.Text;
-            myServer.Broadcast(textBoxAskQuestion.Text, true);
+            BroadcastQuestion();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void textBoxAskQuestion_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode==Keys.Return)
+            {
+                BroadcastQuestion();
+            }
+        }
+        private void BroadcastQuestion()
+        {
+            foreach (var client in myServer.clients)
+            {
+                client.No = false;
+                client.Yes = false;
+            }
+            labelQuestion.Text = textBoxAskQuestion.Text;
+            myServer.Broadcast(textBoxAskQuestion.Text, true);
         }
     }
 }

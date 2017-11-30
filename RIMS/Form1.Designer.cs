@@ -63,11 +63,11 @@
             // infoLabel
             // 
             this.infoLabel.AutoSize = true;
-            this.infoLabel.Location = new System.Drawing.Point(13, 2);
+            this.infoLabel.Location = new System.Drawing.Point(9, 5);
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(73, 17);
+            this.infoLabel.Size = new System.Drawing.Size(77, 17);
             this.infoLabel.TabIndex = 4;
-            this.infoLabel.Text = "Info/status";
+            this.infoLabel.Text = "Server info";
             // 
             // connectedInfoBox
             // 
@@ -119,6 +119,7 @@
             this.textBoxAskQuestion.Name = "textBoxAskQuestion";
             this.textBoxAskQuestion.Size = new System.Drawing.Size(432, 22);
             this.textBoxAskQuestion.TabIndex = 8;
+            this.textBoxAskQuestion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxAskQuestion_KeyDown);
             // 
             // buttonSendQuestion
             // 
@@ -133,11 +134,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 134);
+            this.label1.Location = new System.Drawing.Point(12, 134);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 17);
+            this.label1.Size = new System.Drawing.Size(92, 17);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Ställ fråga";
+            this.label1.Text = "Ställ en fråga";
             // 
             // labelClientReplyStatus
             // 
@@ -180,7 +181,6 @@
             this.ShowIcon = false;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

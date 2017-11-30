@@ -34,7 +34,7 @@ namespace RIMS
                 listener.Start();
                 connected = true;
                 form.infoBox.Text = "Server up and running...";
-                form.connectionLight.BackColor = System.Drawing.Color.DarkGreen;
+                form.connectionLight.BackColor = Color.DarkGreen;
                 form.serverStartButton.Enabled = false;
 
                 while (connected)
@@ -42,7 +42,7 @@ namespace RIMS
                     TcpClient c = listener.AcceptTcpClient();
                     ClientHandler newClient = new ClientHandler(c, this, form, false, false, ((IPEndPoint)c.Client.RemoteEndPoint).Address.ToString());
                     clients.Add(newClient);
-
+                    Broadcast(form.labelQuestion.Text, true);
                     Connected();
 
                     Thread clientThread = new Thread(newClient.Run);
@@ -84,18 +84,16 @@ namespace RIMS
                 if (client.Yes)
                 {
                     temp.BackColor = Color.Green;
-                    client.Yes = false;
+                    clientsReplied++;
                 }
-                clientsReplied++;
 
                 if (client.No)
                 {
                     temp.BackColor = Color.Red;
-                    client.No = false;
+                    clientsReplied++;
                 }
             }
 
-            clientsReplied++;
             form.labelClientReplyStatus.Text = $"Svarat: {clientsReplied} / {clientsConnected}";
             form.connectedInfoBox.Text = clients.Count.ToString();
         }
@@ -111,11 +109,7 @@ namespace RIMS
                 w.Write(hostMessage);
                 w.Flush();
 
-                foreach (var client in clients)
-                {
-                    client.No = false;
-                    client.Yes = false;
-                }
+                
                 Connected();
             }
         }
