@@ -30,7 +30,8 @@ namespace Client
         private void btnYES_Click(object sender, EventArgs e)
         {
             myClient.Send("true", true);
-            btnYES.BackColor = Color.LightGoldenrodYellow;
+            btnNO.BackColor = Color.Red;
+            btnYES.BackColor = Color.LightGreen;
             
         }
 
@@ -43,6 +44,7 @@ namespace Client
         private void btnNO_Click(object sender, EventArgs e)
         {     
             myClient.Send("false", true);
+            btnYES.BackColor = Color.Green;
             btnNO.BackColor = Color.PaleVioletRed;
 
         }

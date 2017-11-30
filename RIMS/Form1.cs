@@ -21,8 +21,7 @@ namespace RIMS
         public Form1()
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false;
-           
+            //CheckForIllegalCrossThreadCalls = false;
         }        
         
         private void serverStartButton_Click(object sender, EventArgs e)
@@ -30,6 +29,7 @@ namespace RIMS
             myServer = new Server(this);
             Thread serverThread = new Thread(myServer.Run);
             serverThread.Start();
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -43,10 +43,10 @@ namespace RIMS
                 w.Write("OBS. Skickas inte till någon. Bara för att avsluta denna tråd");
                 w.Flush();
 
-                myServer.Broadcast("Servern has stängts", false);   
+                myServer.Broadcast("Servern has stängts", false);
             }
         }
-        
+
         private void buttonSendQuestion_Click(object sender, EventArgs e)
         {
             BroadcastQuestion();
@@ -54,7 +54,7 @@ namespace RIMS
 
         private void textBoxAskQuestion_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode==Keys.Return)
+            if (e.KeyCode == Keys.Return)
             {
                 BroadcastQuestion();
             }
@@ -68,6 +68,44 @@ namespace RIMS
             }
             labelQuestion.Text = textBoxAskQuestion.Text;
             myServer.Broadcast(textBoxAskQuestion.Text, true);
+        }
+
+     
+     
+
+        public void Progress()
+        {
+            double yesCounter = 0;
+            double noCounter = 0;
+
+
+            if (myServer != null)
+            {
+                foreach (var item in myServer.clients)
+                {
+
+                    if (item.Yes)
+                    {
+                        yesCounter++;
+                    }
+                    if (item.No)
+                    {
+                        noCounter++;
+                    }
+
+                }
+                if (yesCounter > 0 || noCounter > 0)
+                {
+                    double progress = (yesCounter / (yesCounter + noCounter)) * 100;
+                   
+                    progressBar1.Minimum = 0;
+                    progressBar1.Maximum =(int)(yesCounter + noCounter);
+                    progressBar1.Value = (int)yesCounter;
+
+                }
+
+            }
+
         }
     }
 }

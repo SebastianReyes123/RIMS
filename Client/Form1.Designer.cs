@@ -71,7 +71,7 @@
             // 
             // btnConnectToServer
             // 
-            this.btnConnectToServer.Location = new System.Drawing.Point(7, 116);
+            this.btnConnectToServer.Location = new System.Drawing.Point(7, 105);
             this.btnConnectToServer.Margin = new System.Windows.Forms.Padding(2);
             this.btnConnectToServer.Name = "btnConnectToServer";
             this.btnConnectToServer.Size = new System.Drawing.Size(112, 46);
@@ -83,7 +83,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 64);
+            this.label3.Location = new System.Drawing.Point(4, 54);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
@@ -93,7 +93,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 27);
+            this.label2.Location = new System.Drawing.Point(5, 16);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 13);
@@ -107,9 +107,8 @@
             this.labelStatus.Location = new System.Drawing.Point(270, 48);
             this.labelStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(37, 13);
+            this.labelStatus.Size = new System.Drawing.Size(0, 13);
             this.labelStatus.TabIndex = 14;
-            this.labelStatus.Text = "Status";
             // 
             // labelQuestion
             // 
@@ -124,7 +123,7 @@
             // 
             // txBxAlias
             // 
-            this.txBxAlias.Location = new System.Drawing.Point(7, 80);
+            this.txBxAlias.Location = new System.Drawing.Point(7, 69);
             this.txBxAlias.Margin = new System.Windows.Forms.Padding(2);
             this.txBxAlias.Name = "txBxAlias";
             this.txBxAlias.Size = new System.Drawing.Size(113, 20);
@@ -132,7 +131,7 @@
             // 
             // txBxIp
             // 
-            this.txBxIp.Location = new System.Drawing.Point(7, 43);
+            this.txBxIp.Location = new System.Drawing.Point(7, 32);
             this.txBxIp.Margin = new System.Windows.Forms.Padding(2);
             this.txBxIp.Name = "txBxIp";
             this.txBxIp.Size = new System.Drawing.Size(113, 20);
@@ -146,12 +145,11 @@
             this.groupBoxConnect.Controls.Add(this.btnConnectToServer);
             this.groupBoxConnect.Controls.Add(this.txBxAlias);
             this.groupBoxConnect.Controls.Add(this.label3);
-            this.groupBoxConnect.Location = new System.Drawing.Point(22, 21);
+            this.groupBoxConnect.Location = new System.Drawing.Point(22, 30);
             this.groupBoxConnect.Name = "groupBoxConnect";
-            this.groupBoxConnect.Size = new System.Drawing.Size(200, 177);
+            this.groupBoxConnect.Size = new System.Drawing.Size(200, 168);
             this.groupBoxConnect.TabIndex = 20;
             this.groupBoxConnect.TabStop = false;
-            this.groupBoxConnect.Text = "groupBoxConnect";
             // 
             // label1
             // 
@@ -177,6 +175,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.BurlyWood;
             this.ClientSize = new System.Drawing.Size(397, 513);
             this.Controls.Add(this.btnDisconnect);
             this.Controls.Add(this.label1);
