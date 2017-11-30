@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace RIMS
 {
-    class Server
+    public class Server
     {
-        public TcpClient client;
-        public bool connected = false;
+        public static bool connected = false;
+        public TcpClient client;        
         public Server(Form1 form)
         {
             this.form = form;
@@ -29,13 +29,18 @@ namespace RIMS
             {
                 listener.Start();
                 connected = true;
-                form.Info("Server up and running, waiting for messages...");
+                form.infoBox.Text = "Server up and running...";
+                form.connectionLight.BackColor = System.Drawing.Color.DarkGreen;
+                form.serverStartButton.Enabled = false;
+
                 while (connected)
                 {
                     TcpClient c = listener.AcceptTcpClient();
-                    ClientHandler newClient = new ClientHandler(c, this, form);
+                    ClientHandler newClient = new ClientHandler(c, this, form, false, false, ((IPEndPoint)c.Client.RemoteEndPoint).Address.ToString());
                     clients.Add(newClient);
-                    form.connectedBox.Items.Add(newClient);
+
+                    Connected();
+
                     Thread clientThread = new Thread(newClient.Run);
                     clientThread.Start();
                 }
@@ -43,9 +48,40 @@ namespace RIMS
             }
             catch (Exception ex)
             {
-                form.Info(ex.Message);
+
+                form.infoBox.Text = ex.Message;
+                form.serverStartButton.Enabled = true;
+
+            }
+            finally
+            {
+                if (listener != null)
+                {
+                    listener.Stop();
+                    form.serverStartButton.Enabled = true;
+                }
             }
 
+        }
+
+        public void Connected()
+        {
+            form.connectedBox.Items.Clear();
+            foreach (var client in clients)
+            {
+                string ip = ((IPEndPoint)client.tcpclient.Client.RemoteEndPoint).Address.ToString();
+                if (client.Alias == null)
+                {
+                    client.Alias = "Håkan";
+                }
+                var temp = form.connectedBox.Items.Add(ip);
+                temp.Text = client.Alias;
+                if (client.Yes)
+                    temp.BackColor = System.Drawing.Color.Green;
+                if (client.No)
+                    temp.BackColor = System.Drawing.Color.Red;
+            }
+            form.connectedInfoBox.Text = clients.Count.ToString();
         }
 
         public void Broadcast(ClientHandler client, string message)
@@ -72,8 +108,8 @@ namespace RIMS
         public void DisconnectClient(ClientHandler client)
         {
             clients.Remove(client);
-            form.Info("Client X has left the building...");
-            Broadcast(client, "Client X has left the building...");
+            form.infoBox.Text = $"Client {client.Alias} has left the building...";
+            Connected();
 
         }
 
@@ -92,7 +128,7 @@ namespace RIMS
 
         //}
 
-        public void BroadcastQuestion( string message)
+        public void BroadcastQuestion(string message)
         {
 
             connected = true;
@@ -106,13 +142,14 @@ namespace RIMS
 
         public void Write(string message)
         {
-           
-                NetworkStream n = client.GetStream();
-                
-                BinaryWriter w = new BinaryWriter(n);
-                w.Write(message);
-                w.Flush();
-            }
+
+            NetworkStream n = client.GetStream();
+
+            BinaryWriter w = new BinaryWriter(n);
+            w.Write(message);
+            w.Flush();     
+        }
+
     }
 }
 
