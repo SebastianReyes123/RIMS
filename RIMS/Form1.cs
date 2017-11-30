@@ -21,7 +21,7 @@ namespace RIMS
         public Form1()
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false;
+            //CheckForIllegalCrossThreadCalls = false;
         }        
         
         private void serverStartButton_Click(object sender, EventArgs e)
