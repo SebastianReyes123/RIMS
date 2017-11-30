@@ -33,13 +33,20 @@ namespace Client
             try
             {
                 form.Invoke(new Action(() => { Ip = form.txBxIp.Text; }));
-                client = new TcpClient(Ip, 5000);
-                senderThread = new Thread(Listen);
-                senderThread.Start();
-                message.Alias = form.txBxAlias.Text;
-                message.Ip = GetLocalIP();
 
-                Send(null, true);
+                client = new TcpClient();
+                SetStatusLabelText("Försöker ansluta..", Color.Black);
+
+                if (client.ConnectAsync(Ip, 5000).Wait(3000))
+                {
+                    senderThread = new Thread(Listen);
+                    senderThread.Start();
+                    message.Alias = form.txBxAlias.Text;
+                    message.Ip = GetLocalIP();
+                    Send(null, true);
+                }
+                else
+                    throw new Exception();
             }
             catch (Exception e)
             {
@@ -92,7 +99,7 @@ namespace Client
             }
         }
 
-        
+
 
         public void Send(string answer, bool stayConnected)
         {
@@ -130,18 +137,19 @@ namespace Client
         }
 
         public void GroupBoxEnabler(bool b)
-        {
-            
-            form?.Invoke(new Action(() => { form.groupBoxConnect.Enabled = b; }));
+        {           
+                form.Invoke(new Action(() => { form.groupBoxConnect.Enabled = b; }));
         }
 
         public void SetStatusLabelText(string status, Color color)
         {
-            form.labelStatus.BackColor = color;
-            form?.Invoke(new Action(() => { form.labelStatus.Text = status; }));
+            
+                form.labelStatus.BackColor = color;
+                form.Invoke(new Action(() => { form.labelStatus.Text = status; }));
+            
         }
 
-      
+
     }
 }
 
