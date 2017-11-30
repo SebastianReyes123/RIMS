@@ -86,7 +86,9 @@ namespace RIMS
                 }
 
                 ListViewItem temp = (ListViewItem)form.Invoke(new Action(() => { form.connectedBox.Items.Add(ip); }));
-                temp.Text = client.Alias;
+                if(temp != null)
+                    temp.Text = client.Alias;
+
                 if (client.Yes)
                 {
                     temp.BackColor = Color.Green;
@@ -128,7 +130,8 @@ namespace RIMS
 
         public void SetInfoBoxText(string infoText)
         {
-            form.Invoke(new Action(() => { form.infoBox.Text = infoText; }));
+            if(form != null)
+                form.Invoke(new Action(() => { form.infoBox.Text = infoText; }));
         }
 
         public void ServerButtonIsEnabled(bool isEnabled)
