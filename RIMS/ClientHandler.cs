@@ -41,16 +41,16 @@ namespace RIMS
                     ClientMessage myMessage = JsonConvert.DeserializeObject<ClientMessage>(message);
                     if (!myMessage.StayConnected)
                         break;
-                    foreach (var c in myServer.clients)
-                    {
-                        c.Ip = myMessage.Ip;
-                        c.Alias = myMessage.Alias;
+                    Ip = myMessage.Ip;
+                    Alias = myMessage.Alias;
 
-                        if (myMessage.Answer == "true")
-                            c.Yes = true;
-                        if (myMessage.Answer == "false")
-                            c.No = true;
-                    }
+                    Yes = false;
+                    No = false;
+                    if (myMessage.Answer == "true")
+                        Yes = true;
+                    if (myMessage.Answer == "false")
+                        No = true;
+
                     myServer.Connected();
                 }
             }
@@ -62,8 +62,6 @@ namespace RIMS
             {
                 myServer.DisconnectClient(this);
                 tcpclient.Close();
-
-
             }
         }
 

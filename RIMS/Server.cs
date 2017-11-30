@@ -45,7 +45,6 @@ namespace RIMS
                     Thread clientThread = new Thread(newClient.Run);
                     clientThread.Start();
                 }
-
             }
             catch (Exception ex)
             {
@@ -68,20 +67,32 @@ namespace RIMS
         public void Connected()
         {
             form.connectedBox.Items.Clear();
+            int clientsConnected = 0;
+            int clientsReplied = 0;
+
             foreach (var client in clients)
             {
+                clientsConnected++;
                 string ip = ((IPEndPoint)client.tcpclient.Client.RemoteEndPoint).Address.ToString();
                 if (client.Alias == null)
                 {
                     client.Alias = "Håkan";
                 }
+
                 var temp = form.connectedBox.Items.Add(ip);
                 temp.Text = client.Alias;
                 if (client.Yes)
+                {
                     temp.BackColor = System.Drawing.Color.Green;
+                    clientsReplied++;
+                }
                 if (client.No)
+                {
                     temp.BackColor = System.Drawing.Color.Red;
+                    clientsReplied++;
+                }
             }
+            form.labelClientReplyStatus.Text = $"Svarat: {clientsReplied} / {clientsConnected}";
             form.connectedInfoBox.Text = clients.Count.ToString();
         }
 
@@ -109,7 +120,7 @@ namespace RIMS
             clients.Remove(client);
             form.infoBox.Text = $"Client {client.Alias} has left the building...";
             Connected();
-        }              
+        }
     }
 }
 

@@ -48,7 +48,13 @@ namespace RIMS
         
         private void buttonSendQuestion_Click(object sender, EventArgs e)
         {
+            labelQuestion.Text = textBoxAskQuestion.Text;
             myServer.Broadcast(textBoxAskQuestion.Text, true);
-        }        
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
