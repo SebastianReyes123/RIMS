@@ -37,14 +37,17 @@ namespace RIMS
             {
                 Server.connected = false;
                 TcpClient client = new TcpClient("127.0.0.1", 5000);
-                ClientHandler ch = new ClientHandler(client, myServer, this, true, false,"");
                 NetworkStream n = client.GetStream();
                 BinaryWriter w = new BinaryWriter(n);
                 w.Write("Håkan"); 
                 w.Flush();
-                myServer.Broadcast(ch, "servern har avslutats");
             }
         }
-
+        
+        private void buttonSendQuestion_Click(object sender, EventArgs e)
+        {
+            string message = textBoxAskQuestion.Text;     
+            myServer.Broadcast(message);
+        }        
     }
 }

@@ -109,16 +109,14 @@
             this.connectedBox.Tag = "";
             this.connectedBox.TileSize = new System.Drawing.Size(100, 100);
             this.connectedBox.UseCompatibleStateImageBehavior = false;
-            this.connectedBox.View = System.Windows.Forms.View.List;
-            
+            this.connectedBox.View = System.Windows.Forms.View.List;            
             // 
             // textBoxAskQuestion
             // 
             this.textBoxAskQuestion.Location = new System.Drawing.Point(12, 154);
             this.textBoxAskQuestion.Name = "textBoxAskQuestion";
             this.textBoxAskQuestion.Size = new System.Drawing.Size(432, 22);
-            this.textBoxAskQuestion.TabIndex = 8;
-            
+            this.textBoxAskQuestion.TabIndex = 8;            
             // 
             // buttonSendQuestion
             // 
@@ -128,7 +126,7 @@
             this.buttonSendQuestion.TabIndex = 9;
             this.buttonSendQuestion.Text = "Skicka fråga";
             this.buttonSendQuestion.UseVisualStyleBackColor = true;
-            
+            this.buttonSendQuestion.Click += new System.EventHandler(this.buttonSendQuestion_Click);
             // 
             // label1
             // 

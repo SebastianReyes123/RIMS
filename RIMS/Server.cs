@@ -13,7 +13,7 @@ namespace RIMS
     public class Server
     {
         public static bool connected = false;
-        public TcpClient client;        
+        public TcpClient client;
         public Server(Form1 form)
         {
             this.form = form;
@@ -84,24 +84,15 @@ namespace RIMS
             form.connectedInfoBox.Text = clients.Count.ToString();
         }
 
-        public void Broadcast(ClientHandler client, string message)
+        public void Broadcast(string message)
         {
             foreach (ClientHandler tmpClient in clients)
             {
-                if (tmpClient != client)
-                {
-                    NetworkStream n = tmpClient.tcpclient.GetStream();
-                    BinaryWriter w = new BinaryWriter(n);
-                    w.Write(message);
-                    w.Flush();
-                }
-                else if (clients.Count() == 1)
-                {
-                    NetworkStream n = tmpClient.tcpclient.GetStream();
-                    BinaryWriter w = new BinaryWriter(n);
-                    w.Write("Sorry, you are alone...");
-                    w.Flush();
-                }
+                NetworkStream n = tmpClient.tcpclient.GetStream();
+                BinaryWriter w = new BinaryWriter(n);
+                w.Write(message);
+                w.Flush();
+
             }
         }
 
@@ -111,45 +102,7 @@ namespace RIMS
             form.infoBox.Text = $"Client {client.Alias} has left the building...";
             Connected();
 
-        }
-
-        //public void SendQuestion(string message)
-        //{
-
-        //    TcpClient c = new TcpClient();
-        //    Server server = new Server(form);
-        //    ClientHandler client = new ClientHandler(c, server, form);
-        //    BroadcastQuestion(message);
-        //    //Broadcast(client, message);
-
-        //    //form.Invoke(Broadcast);
-
-
-
-        //}
-
-        public void BroadcastQuestion(string message)
-        {
-
-            connected = true;
-            TcpClient tcpClient = new TcpClient();
-
-            NetworkStream n = tcpClient.GetStream();
-            BinaryWriter w = new BinaryWriter(n);
-            w.Write(message);
-            w.Flush();
-        }
-
-        public void Write(string message)
-        {
-
-            NetworkStream n = client.GetStream();
-
-            BinaryWriter w = new BinaryWriter(n);
-            w.Write(message);
-            w.Flush();     
-        }
-
+        }              
     }
 }
 
