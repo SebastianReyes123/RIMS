@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RIMS
 {
-    class HostMessage
+    public class HostMessage
     {
         public string Message { get; set; }
         public bool IsConnected { get; set; }

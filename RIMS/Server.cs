@@ -74,30 +74,31 @@ namespace RIMS
             {
                 clientsConnected++;
                 string ip = ((IPEndPoint)client.tcpclient.Client.RemoteEndPoint).Address.ToString();
-                if (client.Alias == null|| client.Alias == string.Empty)
+                if (client.Alias == null || client.Alias == string.Empty)
                 {
                     client.Alias = "Håkan";
                 }
-                var temp = form.connectedBox.Items.Add(ip);                
+                var temp = form.connectedBox.Items.Add(ip);
                 temp.Text = client.Alias;
                 if (client.Yes)
                 {
                     temp.BackColor = Color.Green;
                     client.Yes = false;
                 }
-                    clientsReplied++;
-                }
+                clientsReplied++;
+
                 if (client.No)
                 {
                     temp.BackColor = Color.Red;
                     client.No = false;
-                }               
+
                     clientsReplied++;
                 }
             }
             form.labelClientReplyStatus.Text = $"Svarat: {clientsReplied} / {clientsConnected}";
             form.connectedInfoBox.Text = clients.Count.ToString();
         }
+
 
         public void Broadcast(string message, bool isConnected)
         {
