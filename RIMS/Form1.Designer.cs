@@ -40,6 +40,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelClientReplyStatus = new System.Windows.Forms.Label();
             this.labelQuestion = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // serverStartButton
@@ -160,11 +162,24 @@
             this.labelQuestion.TabIndex = 12;
             this.labelQuestion.Text = "Fråga: ";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(24, 223);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(322, 23);
+            this.progressBar1.TabIndex = 13;
+           
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 639);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.labelQuestion);
             this.Controls.Add(this.labelClientReplyStatus);
             this.Controls.Add(this.label1);
@@ -181,6 +196,7 @@
             this.ShowIcon = false;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+          
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,6 +215,8 @@
         private System.Windows.Forms.Label label1;
         internal System.Windows.Forms.Label labelClientReplyStatus;
         internal System.Windows.Forms.Label labelQuestion;
+        public System.ComponentModel.BackgroundWorker backgroundWorker1;
+        public System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

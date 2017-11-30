@@ -101,9 +101,16 @@ namespace RIMS
                     clientsReplied++;
                 }
             }
+
+            
+           
+           
+            form.Progress();
+            
             form.Invoke(new Action(() => { form.labelClientReplyStatus.Text = $"Svarat: {clientsReplied} / {clientsConnected}"; }));
             form.Invoke(new Action(() => { form.connectedInfoBox.Text = clients.Count.ToString(); }));
         }
+
 
 
         public void Broadcast(string message, bool isConnected)
