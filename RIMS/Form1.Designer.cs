@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelClientReplyStatus = new System.Windows.Forms.Label();
             this.labelQuestion = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // serverStartButton
@@ -160,11 +161,19 @@
             this.labelQuestion.TabIndex = 12;
             this.labelQuestion.Text = "Fråga: ";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(432, 348);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 639);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.labelQuestion);
             this.Controls.Add(this.labelClientReplyStatus);
             this.Controls.Add(this.label1);
@@ -199,6 +208,7 @@
         private System.Windows.Forms.Label label1;
         internal System.Windows.Forms.Label labelClientReplyStatus;
         internal System.Windows.Forms.Label labelQuestion;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
