@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -84,15 +85,22 @@ namespace RIMS
             form.connectedInfoBox.Text = clients.Count.ToString();
         }
 
-        public void Broadcast(string message)
+        public void Broadcast(string message, bool isConnected)
         {
             foreach (ClientHandler tmpClient in clients)
             {
                 NetworkStream n = tmpClient.tcpclient.GetStream();
                 BinaryWriter w = new BinaryWriter(n);
-                w.Write(message);
+                string hostMessage = JsonConvert.SerializeObject(new HostMessage { Message = message, IsConnected = isConnected });
+                w.Write(hostMessage);
                 w.Flush();
 
+                foreach (var client in clients)
+                {
+                    client.No = false;
+                    client.Yes = false;
+                }
+                Connected();
             }
         }
 
@@ -101,7 +109,6 @@ namespace RIMS
             clients.Remove(client);
             form.infoBox.Text = $"Client {client.Alias} has left the building...";
             Connected();
-
         }              
     }
 }

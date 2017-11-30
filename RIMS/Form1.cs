@@ -39,15 +39,16 @@ namespace RIMS
                 TcpClient client = new TcpClient("127.0.0.1", 5000);
                 NetworkStream n = client.GetStream();
                 BinaryWriter w = new BinaryWriter(n);
-                w.Write("Håkan"); 
+                w.Write("OBS. Skickas inte till någon. Bara för att avsluta denna tråd");
                 w.Flush();
+
+                myServer.Broadcast("Servern has stängts", false);   
             }
         }
         
         private void buttonSendQuestion_Click(object sender, EventArgs e)
         {
-            string message = textBoxAskQuestion.Text;     
-            myServer.Broadcast(message);
+            myServer.Broadcast(textBoxAskQuestion.Text, true);
         }        
     }
 }
