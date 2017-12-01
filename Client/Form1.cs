@@ -29,9 +29,9 @@ namespace Client
 
         private void btnYES_Click(object sender, EventArgs e)
         {
-            myClient.Send("true", true);
             btnNO.BackColor = Color.Red;
             btnYES.BackColor = Color.LightGreen;     
+            myClient.Send("true", true);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -41,10 +41,9 @@ namespace Client
 
         private void btnNO_Click(object sender, EventArgs e)
         {     
-            myClient.Send("false", true);
             btnYES.BackColor = Color.Green;
             btnNO.BackColor = Color.PaleVioletRed;
-
+            myClient.Send("false", true);
         }
 
         private void btnDisconnect_Click(object sender, EventArgs e)
