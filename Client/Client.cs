@@ -78,6 +78,8 @@ namespace Client
                     else
                     {
                         form.Invoke(new Action(() => { form.labelQuestion.Text = msg.Message; }));
+                        form.Invoke(new Action(() => { form.btnYES.BackColor = Color.Green; }));
+                        form.Invoke(new Action(() => { form.btnNO.BackColor = Color.Red; }));
                     }
                 }
             }
@@ -105,6 +107,8 @@ namespace Client
             catch (Exception ex)
             {
                 SetStatusLabelText("Svaret kunde ej skickas till servern", Color.Red);
+                form.Invoke(new Action(() => { form.btnYES.BackColor = Color.Green; }));
+                form.Invoke(new Action(() => { form.btnNO.BackColor = Color.Red; }));
             }
         }
 

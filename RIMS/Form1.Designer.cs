@@ -47,10 +47,10 @@
             // 
             // serverStartButton
             // 
-            this.serverStartButton.Location = new System.Drawing.Point(349, 17);
-            this.serverStartButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.serverStartButton.Location = new System.Drawing.Point(465, 21);
+            this.serverStartButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.serverStartButton.Name = "serverStartButton";
-            this.serverStartButton.Size = new System.Drawing.Size(63, 24);
+            this.serverStartButton.Size = new System.Drawing.Size(84, 30);
             this.serverStartButton.TabIndex = 0;
             this.serverStartButton.Text = "Host";
             this.serverStartButton.UseVisualStyleBackColor = true;
@@ -58,50 +58,48 @@
             // 
             // infoBox
             // 
-            this.infoBox.Location = new System.Drawing.Point(9, 20);
-            this.infoBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.infoBox.Location = new System.Drawing.Point(12, 25);
+            this.infoBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.infoBox.Name = "infoBox";
             this.infoBox.ReadOnly = true;
-            this.infoBox.Size = new System.Drawing.Size(295, 20);
+            this.infoBox.Size = new System.Drawing.Size(392, 22);
             this.infoBox.TabIndex = 2;
             // 
             // infoLabel
             // 
             this.infoLabel.AutoSize = true;
-            this.infoLabel.Location = new System.Drawing.Point(7, 4);
-            this.infoLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.infoLabel.Location = new System.Drawing.Point(9, 5);
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(58, 13);
+            this.infoLabel.Size = new System.Drawing.Size(77, 17);
             this.infoLabel.TabIndex = 4;
             this.infoLabel.Text = "Server info";
             // 
             // connectedInfoBox
             // 
             this.connectedInfoBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.connectedInfoBox.Location = new System.Drawing.Point(712, 88);
-            this.connectedInfoBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.connectedInfoBox.Location = new System.Drawing.Point(949, 108);
+            this.connectedInfoBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.connectedInfoBox.Name = "connectedInfoBox";
             this.connectedInfoBox.ReadOnly = true;
-            this.connectedInfoBox.Size = new System.Drawing.Size(25, 13);
+            this.connectedInfoBox.Size = new System.Drawing.Size(33, 15);
             this.connectedInfoBox.TabIndex = 5;
             // 
             // connectionLight
             // 
             this.connectionLight.BackColor = System.Drawing.Color.Red;
-            this.connectionLight.Location = new System.Drawing.Point(308, 20);
-            this.connectionLight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.connectionLight.Location = new System.Drawing.Point(411, 25);
+            this.connectionLight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.connectionLight.Name = "connectionLight";
-            this.connectionLight.Size = new System.Drawing.Size(26, 18);
+            this.connectionLight.Size = new System.Drawing.Size(35, 22);
             this.connectionLight.TabIndex = 6;
             this.connectionLight.UseVisualStyleBackColor = false;
             // 
             // connectedLabel
             // 
             this.connectedLabel.AutoSize = true;
-            this.connectedLabel.Location = new System.Drawing.Point(623, 89);
-            this.connectedLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.connectedLabel.Location = new System.Drawing.Point(831, 110);
             this.connectedLabel.Name = "connectedLabel";
-            this.connectedLabel.Size = new System.Drawing.Size(85, 13);
+            this.connectedLabel.Size = new System.Drawing.Size(113, 17);
             this.connectedLabel.TabIndex = 7;
             this.connectedLabel.Text = "Anslutna klienter";
             // 
@@ -112,10 +110,10 @@
             this.connectedBox.FullRowSelect = true;
             this.connectedBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.connectedBox.LabelWrap = false;
-            this.connectedBox.Location = new System.Drawing.Point(626, 105);
-            this.connectedBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.connectedBox.Location = new System.Drawing.Point(835, 129);
+            this.connectedBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.connectedBox.Name = "connectedBox";
-            this.connectedBox.Size = new System.Drawing.Size(113, 385);
+            this.connectedBox.Size = new System.Drawing.Size(149, 473);
             this.connectedBox.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.connectedBox.TabIndex = 8;
             this.connectedBox.Tag = "";
@@ -125,19 +123,19 @@
             // 
             // textBoxAskQuestion
             // 
-            this.textBoxAskQuestion.Location = new System.Drawing.Point(9, 125);
-            this.textBoxAskQuestion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxAskQuestion.Location = new System.Drawing.Point(12, 154);
+            this.textBoxAskQuestion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxAskQuestion.Name = "textBoxAskQuestion";
-            this.textBoxAskQuestion.Size = new System.Drawing.Size(325, 20);
+            this.textBoxAskQuestion.Size = new System.Drawing.Size(432, 22);
             this.textBoxAskQuestion.TabIndex = 8;
             this.textBoxAskQuestion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxAskQuestion_KeyDown);
             // 
             // buttonSendQuestion
             // 
-            this.buttonSendQuestion.Location = new System.Drawing.Point(349, 125);
-            this.buttonSendQuestion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSendQuestion.Location = new System.Drawing.Point(465, 154);
+            this.buttonSendQuestion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonSendQuestion.Name = "buttonSendQuestion";
-            this.buttonSendQuestion.Size = new System.Drawing.Size(90, 19);
+            this.buttonSendQuestion.Size = new System.Drawing.Size(120, 23);
             this.buttonSendQuestion.TabIndex = 9;
             this.buttonSendQuestion.Text = "Skicka fråga";
             this.buttonSendQuestion.UseVisualStyleBackColor = true;
@@ -146,10 +144,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 109);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(12, 134);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.Size = new System.Drawing.Size(92, 17);
             this.label1.TabIndex = 10;
             this.label1.Text = "Ställ en fråga";
             // 
@@ -157,10 +154,9 @@
             // 
             this.labelClientReplyStatus.AutoSize = true;
             this.labelClientReplyStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelClientReplyStatus.Location = new System.Drawing.Point(12, 375);
-            this.labelClientReplyStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelClientReplyStatus.Location = new System.Drawing.Point(16, 462);
             this.labelClientReplyStatus.Name = "labelClientReplyStatus";
-            this.labelClientReplyStatus.Size = new System.Drawing.Size(173, 55);
+            this.labelClientReplyStatus.Size = new System.Drawing.Size(217, 69);
             this.labelClientReplyStatus.TabIndex = 11;
             this.labelClientReplyStatus.Text = "Status:";
             // 
@@ -168,19 +164,20 @@
             // 
             this.labelQuestion.AutoSize = true;
             this.labelQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelQuestion.Location = new System.Drawing.Point(9, 246);
-            this.labelQuestion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelQuestion.Location = new System.Drawing.Point(12, 303);
             this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(176, 55);
+            this.labelQuestion.Size = new System.Drawing.Size(219, 69);
             this.labelQuestion.TabIndex = 12;
             this.labelQuestion.Text = "Fråga: ";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(18, 181);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progressBar1.BackColor = System.Drawing.SystemColors.Info;
+            this.progressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.progressBar1.Location = new System.Drawing.Point(11, 222);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(242, 19);
+            this.progressBar1.Size = new System.Drawing.Size(323, 23);
             this.progressBar1.TabIndex = 13;
             // 
             // backgroundWorker1
@@ -190,17 +187,18 @@
             // labelPercentage
             // 
             this.labelPercentage.AutoSize = true;
-            this.labelPercentage.Location = new System.Drawing.Point(224, 163);
+            this.labelPercentage.Location = new System.Drawing.Point(12, 193);
+            this.labelPercentage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPercentage.Name = "labelPercentage";
-            this.labelPercentage.Size = new System.Drawing.Size(13, 13);
+            this.labelPercentage.Size = new System.Drawing.Size(16, 17);
             this.labelPercentage.TabIndex = 14;
             this.labelPercentage.Text = "0";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 519);
+            this.ClientSize = new System.Drawing.Size(1043, 639);
             this.Controls.Add(this.labelPercentage);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.labelQuestion);
@@ -215,7 +213,7 @@
             this.Controls.Add(this.connectedBox);
             this.Controls.Add(this.infoBox);
             this.Controls.Add(this.serverStartButton);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.ShowIcon = false;
             this.Text = "Form1";

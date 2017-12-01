@@ -73,20 +73,15 @@ namespace RIMS
             myServer.Connected();
         }
 
-     
-     
-
         public void Progress()
         {
             double yesCounter = 0;
             double noCounter = 0;
 
-
             if (myServer != null)
             {
                 foreach (var item in myServer.clients)
                 {
-
                     if (item.Yes)
                     {
                         yesCounter++;
@@ -95,13 +90,20 @@ namespace RIMS
                     {
                         noCounter++;
                     }
-
                 }
                 if (yesCounter > 0 || noCounter > 0)
                 {
-                    double progress = (yesCounter / (yesCounter + noCounter)) * 100;   
+                    double progress = (yesCounter / (yesCounter + noCounter)) * 100;
                     progressBar1.Value = (int)progress;
-                    labelPercentage.Text = progress.ToString() + "%";
+                    progressBar1.BackColor = Color.Red;
+
+                    labelPercentage.Text = $"JA: {progress}% NEJ: {100-progress}%";
+                }
+                else if (yesCounter == 0 && noCounter == 0)
+                {
+                    progressBar1.Value = 0;
+                    labelPercentage.Text = "0 %";
+                    progressBar1.BackColor = Color.AntiqueWhite;
                 }
             }
         }
