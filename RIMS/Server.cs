@@ -45,7 +45,7 @@ namespace RIMS
                     clients.Add(newClient);
 
                     string questionText = "";
-                    form.Invoke(new Action(() => { questionText = form.labelQuestion.Text; }));
+                    form.Invoke(new Action(() => { questionText = form.textBoxQuestion.Text; }));
 
                     Broadcast(questionText, true);
                     //Connected();

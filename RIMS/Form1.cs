@@ -68,7 +68,7 @@ namespace RIMS
                 client.No = false;
                 client.Yes = false;
             }
-            labelQuestion.Text = textBoxAskQuestion.Text;
+            textBoxQuestion.Text = textBoxAskQuestion.Text;
             myServer.Broadcast(textBoxAskQuestion.Text, true);
             myServer.Connected();
         }

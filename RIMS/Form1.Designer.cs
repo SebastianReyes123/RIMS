@@ -39,10 +39,10 @@
             this.buttonSendQuestion = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.labelClientReplyStatus = new System.Windows.Forms.Label();
-            this.labelQuestion = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.labelPercentage = new System.Windows.Forms.Label();
+            this.textBoxQuestion = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // serverStartButton
@@ -76,6 +76,7 @@
             // 
             // connectedInfoBox
             // 
+            this.connectedInfoBox.BackColor = System.Drawing.Color.GhostWhite;
             this.connectedInfoBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.connectedInfoBox.Location = new System.Drawing.Point(949, 108);
             this.connectedInfoBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -106,6 +107,8 @@
             // connectedBox
             // 
             this.connectedBox.AllowColumnReorder = true;
+            this.connectedBox.BackColor = System.Drawing.Color.GhostWhite;
+            this.connectedBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.connectedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.connectedBox.FullRowSelect = true;
             this.connectedBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -153,23 +156,13 @@
             // labelClientReplyStatus
             // 
             this.labelClientReplyStatus.AutoSize = true;
-            this.labelClientReplyStatus.BackColor = System.Drawing.SystemColors.Control;
+            this.labelClientReplyStatus.BackColor = System.Drawing.Color.GhostWhite;
             this.labelClientReplyStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelClientReplyStatus.Location = new System.Drawing.Point(16, 462);
             this.labelClientReplyStatus.Name = "labelClientReplyStatus";
             this.labelClientReplyStatus.Size = new System.Drawing.Size(217, 69);
             this.labelClientReplyStatus.TabIndex = 11;
             this.labelClientReplyStatus.Text = "Status:";
-            // 
-            // labelQuestion
-            // 
-            this.labelQuestion.AutoSize = true;
-            this.labelQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelQuestion.Location = new System.Drawing.Point(12, 303);
-            this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(219, 69);
-            this.labelQuestion.TabIndex = 12;
-            this.labelQuestion.Text = "Fråga: ";
             // 
             // progressBar1
             // 
@@ -193,14 +186,28 @@
             this.labelPercentage.TabIndex = 14;
             this.labelPercentage.Text = "0";
             // 
+            // textBoxQuestion
+            // 
+            this.textBoxQuestion.BackColor = System.Drawing.Color.GhostWhite;
+            this.textBoxQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxQuestion.Location = new System.Drawing.Point(24, 269);
+            this.textBoxQuestion.Multiline = true;
+            this.textBoxQuestion.Name = "textBoxQuestion";
+            this.textBoxQuestion.ReadOnly = true;
+            this.textBoxQuestion.Size = new System.Drawing.Size(808, 190);
+            this.textBoxQuestion.TabIndex = 15;
+            this.textBoxQuestion.Text = "Fråga: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(1043, 639);
             this.Controls.Add(this.labelPercentage);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.labelQuestion);
+            this.Controls.Add(this.textBoxQuestion);
             this.Controls.Add(this.labelClientReplyStatus);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonSendQuestion);
@@ -233,11 +240,11 @@
         private System.Windows.Forms.TextBox textBoxAskQuestion;
         private System.Windows.Forms.Button buttonSendQuestion;
         private System.Windows.Forms.Label label1;
-        internal System.Windows.Forms.Label labelClientReplyStatus;
-        internal System.Windows.Forms.Label labelQuestion;
+        internal System.Windows.Forms.Label labelClientReplyStatus;        
         public System.ComponentModel.BackgroundWorker backgroundWorker1;
         public System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label labelPercentage;
+        public System.Windows.Forms.TextBox textBoxQuestion;
     }
 }
 
