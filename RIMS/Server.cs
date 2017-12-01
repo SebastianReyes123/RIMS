@@ -104,6 +104,13 @@ namespace RIMS
             }
             form.Invoke(new Action(() => { form.Progress(); }));           
             form.Invoke(new Action(() => { form.labelClientReplyStatus.Text = $"Svarat: {clientsReplied} / {clientsConnected}"; }));
+            form.Invoke(new Action(() => { form.labelClientReplyStatus.BackColor = Color.GhostWhite; }));
+
+            if (clientsReplied==clientsConnected)
+            {
+                form.Invoke(new Action(() => { form.labelClientReplyStatus.BackColor=Color.Green; }));
+                form.Invoke(new Action(() => { form.labelClientReplyStatus.Text = $"Alla har svarat: {clientsReplied} / {clientsConnected}"; }));
+            }
             form.Invoke(new Action(() => { form.connectedInfoBox.Text = clients.Count.ToString(); }));
         }
 
@@ -133,7 +140,7 @@ namespace RIMS
         {        
                 form.Invoke(new Action(() => { form.infoBox.Text = infoText; }));
         }
-
+        
         public void ServerButtonIsEnabled(bool isEnabled)
         {
             form.Invoke(new Action(() => { form.serverStartButton.Enabled = isEnabled; }));

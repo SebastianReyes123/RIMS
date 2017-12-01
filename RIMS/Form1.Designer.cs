@@ -153,6 +153,7 @@
             // labelClientReplyStatus
             // 
             this.labelClientReplyStatus.AutoSize = true;
+            this.labelClientReplyStatus.BackColor = System.Drawing.SystemColors.Control;
             this.labelClientReplyStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelClientReplyStatus.Location = new System.Drawing.Point(16, 462);
             this.labelClientReplyStatus.Name = "labelClientReplyStatus";
@@ -172,9 +173,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.BackColor = System.Drawing.SystemColors.Info;
-            this.progressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.progressBar1.Location = new System.Drawing.Point(11, 222);
+            this.progressBar1.Location = new System.Drawing.Point(24, 223);
             this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(323, 23);
@@ -187,7 +186,7 @@
             // labelPercentage
             // 
             this.labelPercentage.AutoSize = true;
-            this.labelPercentage.Location = new System.Drawing.Point(12, 193);
+            this.labelPercentage.Location = new System.Drawing.Point(299, 201);
             this.labelPercentage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPercentage.Name = "labelPercentage";
             this.labelPercentage.Size = new System.Drawing.Size(16, 17);
