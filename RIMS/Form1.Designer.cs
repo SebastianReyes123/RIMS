@@ -43,6 +43,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.labelPercentage = new System.Windows.Forms.Label();
             this.textBoxQuestion = new System.Windows.Forms.TextBox();
+            this.labelIP = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // serverStartButton
@@ -166,6 +167,7 @@
             // 
             // progressBar1
             // 
+            this.progressBar1.ForeColor = System.Drawing.Color.Green;
             this.progressBar1.Location = new System.Drawing.Point(24, 223);
             this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.progressBar1.Name = "progressBar1";
@@ -199,12 +201,22 @@
             this.textBoxQuestion.TabIndex = 15;
             this.textBoxQuestion.Text = "Fråga: ";
             // 
+            // labelIP
+            // 
+            this.labelIP.AutoSize = true;
+            this.labelIP.Location = new System.Drawing.Point(594, 34);
+            this.labelIP.Name = "labelIP";
+            this.labelIP.Size = new System.Drawing.Size(97, 17);
+            this.labelIP.TabIndex = 16;
+            this.labelIP.Text = "Din IP-adress:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(1043, 639);
+            this.Controls.Add(this.labelIP);
             this.Controls.Add(this.labelPercentage);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.textBoxQuestion);
@@ -245,6 +257,7 @@
         public System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label labelPercentage;
         public System.Windows.Forms.TextBox textBoxQuestion;
+        private System.Windows.Forms.Label labelIP;
     }
 }
 

@@ -17,6 +17,7 @@ namespace RIMS
     public class Server
     {
         public static bool connected = false;
+        public static string IP;
         public TcpClient client;
         public Server(Form1 form)
         {
@@ -151,8 +152,6 @@ namespace RIMS
             form.Invoke(new Action(() => { lv.BackColor = color; }));
         }
     }
-
-
 }
 
 

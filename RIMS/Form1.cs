@@ -24,6 +24,8 @@ namespace RIMS
             CheckForIllegalCrossThreadCalls = true;
             progressBar1.Maximum = 100;
             progressBar1.Minimum = 0;
+            Server.IP = GetLocalIP();
+            labelIP.Text = $"Din IP-adress: {Server.IP}";
         }        
         
         private void serverStartButton_Click(object sender, EventArgs e)
@@ -103,9 +105,25 @@ namespace RIMS
                 {
                     progressBar1.Value = 0;
                     labelPercentage.Text = "0 %";
-                    progressBar1.BackColor = Color.AntiqueWhite;
+                    progressBar1.BackColor = Color.GhostWhite;
                 }
             }
+        }
+        public string GetLocalIP()
+        {
+
+
+            IPHostEntry host;
+            string localIP = "?";
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    localIP = ip.ToString();
+                }
+            }
+            return localIP;
         }
     }
 }
