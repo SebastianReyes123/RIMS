@@ -21,7 +21,9 @@ namespace RIMS
         public Form1()
         {
             InitializeComponent();
-            //CheckForIllegalCrossThreadCalls = false;
+            CheckForIllegalCrossThreadCalls = true;
+            progressBar1.Maximum = 100;
+            progressBar1.Minimum = 0;
         }        
         
         private void serverStartButton_Click(object sender, EventArgs e)
@@ -41,7 +43,7 @@ namespace RIMS
                 NetworkStream n = client.GetStream();
                 BinaryWriter w = new BinaryWriter(n);
                 w.Write("OBS. Skickas inte till någon. Bara för att avsluta denna tråd");
-                w.Flush();
+                w.Flush();// den här är bara shu
 
                 myServer.Broadcast("Servern has stängts", false);
             }
@@ -68,6 +70,7 @@ namespace RIMS
             }
             labelQuestion.Text = textBoxAskQuestion.Text;
             myServer.Broadcast(textBoxAskQuestion.Text, true);
+            myServer.Connected();
         }
 
      
@@ -96,16 +99,11 @@ namespace RIMS
                 }
                 if (yesCounter > 0 || noCounter > 0)
                 {
-                    double progress = (yesCounter / (yesCounter + noCounter)) * 100;
-                   
-                    progressBar1.Minimum = 0;
-                    progressBar1.Maximum =(int)(yesCounter + noCounter);
-                    progressBar1.Value = (int)yesCounter;
-
+                    double progress = (yesCounter / (yesCounter + noCounter)) * 100;   
+                    progressBar1.Value = (int)progress;
+                    labelPercentage.Text = progress.ToString() + "%";
                 }
-
             }
-
         }
     }
 }

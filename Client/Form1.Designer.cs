@@ -136,7 +136,7 @@
             this.txBxIp.Name = "txBxIp";
             this.txBxIp.Size = new System.Drawing.Size(113, 20);
             this.txBxIp.TabIndex = 11;
-            this.txBxIp.Text = "192.168.25.80";
+            this.txBxIp.Text = "192.168.25.";
             // 
             // groupBoxConnect
             // 

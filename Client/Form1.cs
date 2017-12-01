@@ -17,7 +17,7 @@ namespace Client
         public Form1()
         {
             InitializeComponent();
-            //CheckForIllegalCrossThreadCalls = false;
+            CheckForIllegalCrossThreadCalls = true;
             myClient = new Client(this);
             groupBoxConnect.Enabled = true;
         }
@@ -31,13 +31,11 @@ namespace Client
         {
             myClient.Send("true", true);
             btnNO.BackColor = Color.Red;
-            btnYES.BackColor = Color.LightGreen;
-            
+            btnYES.BackColor = Color.LightGreen;     
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             DisconnectClient();
         }
 
@@ -61,8 +59,8 @@ namespace Client
             if (myClient.client != null)
             {
                 myClient.client.Close();
-                myClient.Send(null, false);
                 myClient.connected = false;
+                myClient.Send(null, false);
             }
         }
 

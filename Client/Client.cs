@@ -45,23 +45,17 @@ namespace Client
                     message.Ip = GetLocalIP();
                     Send(null, true);
                 }
-                else
-                    throw new Exception();
+                
             }
             catch (Exception e)
             {
                 SetStatusLabelText("Det gick ej att ansluta", Color.Red);
                 GroupBoxEnabler(true);
-            }
-
-            //Thread listenerThread = new Thread(Send);
-            //listenerThread.Start();
+            }      
         }
 
         public void Listen()
         {
-            string message = "";
-
             try
             {
                 SetStatusLabelText("Uppkopplad mot servern", Color.Green);
@@ -72,13 +66,14 @@ namespace Client
                 while (connected)
                 {
                     NetworkStream n = client.GetStream();
-                    message = new BinaryReader(n).ReadString();
+                    string message = new BinaryReader(n).ReadString();
                     var msg = JsonConvert.DeserializeObject<HostMessage>(message);
 
                     if (!msg.IsConnected)
                     {
                         GroupBoxEnabler(true);
                         SetStatusLabelText("Ej ansluten till server", Color.Red);
+                        connected = false;
                     }
                     else
                     {
@@ -88,18 +83,11 @@ namespace Client
             }
             catch (Exception ex)
             {
-                SetStatusLabelText("Något gick fel", Color.Red);
+                SetStatusLabelText("Något gick fel vid försök att ta emot ett meddelande från servern", Color.Red);
                 GroupBoxEnabler(true);
 
             }
-            finally
-            {
-                if (senderThread != null)
-                    senderThread.Abort();
-            }
         }
-
-
 
         public void Send(string answer, bool stayConnected)
         {
@@ -116,9 +104,10 @@ namespace Client
             }
             catch (Exception ex)
             {
-                SetStatusLabelText("Något gick fel", Color.Red);
+                SetStatusLabelText("Svaret kunde ej skickas till servern", Color.Red);
             }
         }
+
         public string GetLocalIP()
         {
 
@@ -143,13 +132,9 @@ namespace Client
 
         public void SetStatusLabelText(string status, Color color)
         {
-            
                 form.labelStatus.BackColor = color;
-                form.Invoke(new Action(() => { form.labelStatus.Text = status; }));
-            
+                form.Invoke(new Action(() => { form.labelStatus.Text = status; }));       
         }
-
-
     }
 }
 

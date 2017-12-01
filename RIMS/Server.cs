@@ -24,7 +24,7 @@ namespace RIMS
         }
         private Form1 form;
         public List<ClientHandler> clients = new List<ClientHandler>();
-
+        
         public void Run()
         {
             TcpListener listener = new TcpListener(IPAddress.Any, 5000);
@@ -48,7 +48,7 @@ namespace RIMS
                     form.Invoke(new Action(() => { questionText = form.labelQuestion.Text; }));
 
                     Broadcast(questionText, true);
-                    Connected();
+                    //Connected();
 
                     Thread clientThread = new Thread(newClient.Run);
                     clientThread.Start();
@@ -56,8 +56,7 @@ namespace RIMS
             }
             catch (Exception ex)
             {
-
-                SetInfoBoxText("Något gick galet");
+                SetInfoBoxText("Servern kunde ej startas");
                 ServerButtonIsEnabled(true);
             }
             finally
@@ -65,7 +64,7 @@ namespace RIMS
                 if (listener != null)
                 {
                     listener.Stop();
-                    ServerButtonIsEnabled(true);
+                    form.Invoke(new Action(() => { form.connectionLight.BackColor = Color.Red; }));                   
                 }
             }
         }
@@ -80,33 +79,30 @@ namespace RIMS
             {
                 clientsConnected++;
                 string ip = ((IPEndPoint)client.tcpclient.Client.RemoteEndPoint).Address.ToString();
-                if (client.Alias == null || client.Alias == string.Empty)
+                if (string.IsNullOrEmpty(client.Alias))
                 {
                     client.Alias = "Håkan";
                 }
+                
 
-                ListViewItem temp = (ListViewItem)form.Invoke(new Action(() => { form.connectedBox.Items.Add(ip); }));
-                if(temp != null)
-                    temp.Text = client.Alias;
+                ListViewItem temp = new ListViewItem();
+                form.Invoke(new Action(() => { temp = form.connectedBox.Items.Add(ip); }));
+
+                form.Invoke(new Action(() => { temp.Text = client.Alias; }));
 
                 if (client.Yes)
                 {
-                    temp.BackColor = Color.Green;
+                    SetColor(Color.Green, temp);
                     clientsReplied++;
                 }
 
                 if (client.No)
                 {
-                    temp.BackColor = Color.Red;
+                    SetColor(Color.Red, temp);
                     clientsReplied++;
                 }
             }
-
-            
-           
-           
-            form.Progress();
-            
+            form.Invoke(new Action(() => { form.Progress(); }));           
             form.Invoke(new Action(() => { form.labelClientReplyStatus.Text = $"Svarat: {clientsReplied} / {clientsConnected}"; }));
             form.Invoke(new Action(() => { form.connectedInfoBox.Text = clients.Count.ToString(); }));
         }
@@ -121,10 +117,8 @@ namespace RIMS
                 BinaryWriter w = new BinaryWriter(n);
                 string hostMessage = JsonConvert.SerializeObject(new HostMessage { Message = message, IsConnected = isConnected });
                 w.Write(hostMessage);
-                w.Flush();
-
-
-                Connected();
+                w.Flush(); // redundant
+                //Connected();
             }
         }
 
@@ -136,14 +130,18 @@ namespace RIMS
         }
 
         public void SetInfoBoxText(string infoText)
-        {
-            if(form != null)
+        {        
                 form.Invoke(new Action(() => { form.infoBox.Text = infoText; }));
         }
 
         public void ServerButtonIsEnabled(bool isEnabled)
         {
             form.Invoke(new Action(() => { form.serverStartButton.Enabled = isEnabled; }));
+        }
+
+        public void SetColor(Color color, ListViewItem lv)
+        {
+            form.Invoke(new Action(() => { lv.BackColor = color; }));
         }
     }
 

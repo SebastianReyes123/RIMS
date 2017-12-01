@@ -56,7 +56,7 @@ namespace RIMS
             }
             catch (Exception ex)
             {
-                form.infoBox.Text = ex.Message;
+                myServer.SetInfoBoxText($"{Ip} kunde ej koppla upp sig... {ex.Message}");
             }
             finally
             {
